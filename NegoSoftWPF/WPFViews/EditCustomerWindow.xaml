@@ -1,7 +1,7 @@
 ﻿<Window x:Class="NegoSoftWPF.WPFViews.EditCustomerWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Modifier Client" Height="420" Width="400">
+        Title="Modifier Client" Height="420" Width="400" ResizeMode="NoResize">
     <Grid Margin="10">
         <StackPanel>
             <TextBlock Text="Modifier Client" FontSize="18" FontWeight="Bold" Margin="0 0 0 20"/>

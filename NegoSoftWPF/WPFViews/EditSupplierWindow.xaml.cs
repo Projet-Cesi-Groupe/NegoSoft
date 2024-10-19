@@ -129,8 +129,12 @@ namespace NegoSoftWPF.WPFViews
         {
             if (AddressIdComboBox.SelectedItem is Address selectedAddress)
             {
-                DeliveryStreetTextBlock.Text = selectedAddress.AddDeliveryStreet;
-                BillingStreetTextBlock.Text = selectedAddress.AddBillingStreet;
+                string deliveryInfo = $"{selectedAddress.AddDeliveryStreet}, {selectedAddress.AddDeliveryCity}, " +
+                                      $"{selectedAddress.AddDeliveryZipCode}, {selectedAddress.AddDeliveryCountry}";
+                string billingInfo = $"{selectedAddress.AddBillingStreet}, {selectedAddress.AddBillingCity}, " +
+                                     $"{selectedAddress.AddBillingZipCode}, {selectedAddress.AddBillingCountry}";
+                DeliveryStreetTextBlock.Text = deliveryInfo;
+                BillingStreetTextBlock.Text = billingInfo;
             }
         }
     }

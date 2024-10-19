@@ -34,6 +34,15 @@ namespace NegoAPI.Controllers
             return Ok(customerOrderDetail);
         }
 
+        // GET: api/customerorderdetails/customerorder/{id}
+        [HttpGet("customerorder/{id}")]
+        public async Task<ActionResult<List<CustomerOrderDetails>>> GetCustomerOrderDetailsByCustomerOrderId(Guid id)
+        {
+            var customerOrderDetails = await _customerOrderDetailsService.GetCustomerOrderDetailsByCustomerOrderIdAsync(id);
+            if (customerOrderDetails == null) return NotFound();
+            return Ok(customerOrderDetails);
+        }
+
         // PUT: api/customerorderdetails/{id}
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateCustomerOrderDetails(Guid id, CustomerOrderDetailsViewModel customerOrderDetails)

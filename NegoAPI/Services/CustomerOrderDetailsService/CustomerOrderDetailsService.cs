@@ -78,5 +78,12 @@ namespace NegoAPI.Services.CustomerOrderDetailsService
                 throw new Exception(ex.Message);
             }
         }
+
+        public async Task<IEnumerable<CustomerOrderDetails>> GetCustomerOrderDetailsByCustomerOrderIdAsync(Guid id)
+        {
+            return await _context.CustomerOrderDetails
+                .Where(cod => cod.CodOrderId == id)
+                .ToListAsync();
+        }
     }
 }

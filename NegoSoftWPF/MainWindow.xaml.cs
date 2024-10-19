@@ -238,7 +238,10 @@ namespace NegoSoftWPF
             switch (dataGridType)
             {
                 case System.Type t when t == typeof(CustomerOrder):
-                    MessageBox.Show("update Order");
+                    string selectedOrder = ((CustomerOrder)selectedItem).CoId.ToString();
+                    Guid selectedOrderGuid = Guid.Parse(selectedOrder);
+                    EditCustomerOrderWindow editOrderWindow = new EditCustomerOrderWindow(selectedOrderGuid);
+                    bool? resultOrder = editOrderWindow.ShowDialog();
                     break;
                 case System.Type t when t == typeof(Customer):
                     string selectedCustomer = ((Customer)selectedItem).CusId.ToString();

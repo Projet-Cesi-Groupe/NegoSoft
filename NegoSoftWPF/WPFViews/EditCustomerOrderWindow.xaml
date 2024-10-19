@@ -1,0 +1,39 @@
+﻿<Window x:Class="NegoSoftWPF.WPFViews.EditCustomerOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Modifier Commande" Height="770" Width="380" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Modifier Commande" FontSize="18" FontWeight="Bold" Margin="0 0 0 20"/>
+
+            <Label Content="Client:"/>
+            <ComboBox x:Name="CustomerIdComboBox" Margin="0 0 0 10" SelectionChanged="CustomerIdSelectionChanged"/>
+            <TextBlock x:Name="CustomerNameTextBlock" Margin="0 0 0 10"/>
+            <TextBlock x:Name="CustomerEmailTextBlock" Margin="0 0 0 10"/>
+            <TextBlock x:Name="CustomerPhoneTextBlock" Margin="0 0 0 10"/>
+
+            <Label Content="Adresse:"/>
+            <ComboBox x:Name="AddressIdComboBox" Margin="0 0 0 10" SelectionChanged="AddressIdSelectionChanged"/>
+            <TextBlock x:Name="DeliveryStreetTextBlock" Margin="0 0 0 10"/>
+            <TextBlock x:Name="BillingStreetTextBlock" Margin="0 0 0 10"/>
+
+            <Label Content="État de la commande:"/>
+            <TextBox x:Name="OrderStateTextBox" Margin="0 0 0 10"/>
+
+            <Label Content="Total:"/>
+            <TextBox x:Name="OrderTotalTextBox" Margin="0 0 0 10"/>
+
+            <TextBlock Text="Détails de la commande" FontSize="16" FontWeight="Bold" Margin="0 10 0 20"/>
+
+            <DataGrid x:Name="OrderDetailsDataGrid" AutoGenerateColumns="False" Margin="0 0 0 20" Height="150">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Produit" Binding="{Binding CodProductId}"/>
+                    <DataGridTextColumn Header="Quantité" Binding="{Binding CodQuantity}"/>
+                    <DataGridTextColumn Header="Prix" Binding="{Binding CodPrice}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button Content="Enregistrer" Click="btnSave_Click" Margin="0 10 0 0"/>
+        </StackPanel>
+    </Grid>
+</Window>
