@@ -1,7 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NegoAPI.Services.CustomerService;
 using NegoSoftShared.Models.Entities;
 using NegoSoftShared.Models.ViewModels;
+using NegoSoftWeb.Models.Entities;
 using CustomerViewModel = NegoSoftShared.Models.ViewModels.CustomerViewModel;
 
 namespace NegoAPI.Controllers
@@ -11,10 +14,12 @@ namespace NegoAPI.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerService _customerService;
+        private readonly UserManager<User> _userManager;
 
-        public CustomerController(ICustomerService customerService)
+        public CustomerController(ICustomerService customerService, UserManager<User> userManager)
         {
             _customerService = customerService;
+            _userManager = userManager;
         }
 
         // GET: api/customer
@@ -23,6 +28,15 @@ namespace NegoAPI.Controllers
         {
             var customers = await _customerService.GetAllCustomersAsync();
             return Ok(customers);
+        }
+
+        // GET: api/customer/users/ids
+        // Route qui renvoie la liste des ids des utilisateurs
+        [HttpGet("users/ids")]
+        public async Task<ActionResult<List<User>>> GetUserIds()
+        {
+            var users = await _userManager.Users.ToListAsync();
+            return users;
         }
 
         // GET: api/customer/{id}
