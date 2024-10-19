@@ -14,7 +14,6 @@ namespace NegoSoftShared.Models.ViewModels
         public string CusLastName { get; set; }
         public string CusEmail { get; set; }
         public string CusPhone { get; set; }
-        public Guid? CusDefaultAddressId { get; set; }
         public string CusUserId { get; set; }
     }
 }

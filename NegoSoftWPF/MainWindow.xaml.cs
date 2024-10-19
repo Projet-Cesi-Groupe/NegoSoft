@@ -241,10 +241,16 @@ namespace NegoSoftWPF
                     MessageBox.Show("update Order");
                     break;
                 case System.Type t when t == typeof(Customer):
-                    MessageBox.Show("create customer");
+                    string selectedCustomer = ((Customer)selectedItem).CusId.ToString();
+                    Guid selectedCustomerGuid = Guid.Parse(selectedCustomer);
+                    EditCustomerWindow editCustomer = new EditCustomerWindow(selectedCustomerGuid);
+                    bool? resultCus = editCustomer.ShowDialog();
                     break;
                 case System.Type t when t == typeof(Supplier):
-                    MessageBox.Show("update Order");
+                    string selectedSupplier = ((Supplier)selectedItem).SupId.ToString();
+                    Guid selectedSupplierGuid = Guid.Parse(selectedSupplier);
+                    EditSupplierWindow editSupplier = new EditSupplierWindow(selectedSupplierGuid);
+                    bool? resultSup = editSupplier.ShowDialog();
                     break;
                 case System.Type t when t == typeof(Product):
                     string selectedProduct = ((Product)selectedItem).ProId.ToString();
