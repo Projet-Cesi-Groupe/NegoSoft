@@ -308,7 +308,11 @@ namespace NegoSoftWPF
                 MessageBox.Show($"Erreur: {ex.Message}");
             }
         }
-        private async Task DeleteCustomer()
+        private async void ButtonDetails(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Command details");  
+        }
+            private async Task DeleteCustomer()
         {
             try
             {
