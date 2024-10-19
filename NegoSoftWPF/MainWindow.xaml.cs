@@ -269,7 +269,7 @@ namespace NegoSoftWPF
             switch (dataGridType)
             {
                 case System.Type t when t == typeof(CustomerOrder):
-                    LoadOrdersFromApi();
+                    await DeleteCustomerOrder();
                     break;
                 case System.Type t when t == typeof(Customer):
                     await DeleteCustomer();
@@ -378,6 +378,40 @@ namespace NegoSoftWPF
                     catch (Exception ex)
                     {
                         MessageBox.Show($"Erreur lors de la suppression du fournisseur : {ex.Message}");
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        private async Task DeleteCustomerOrder()
+        {
+            try
+            {
+                string selectedOrder = ((CustomerOrder)selectedItem).CoId.ToString();
+                apiUrl = "https://localhost:7101/api/CustomerOrder/" + selectedOrder;
+                using (var client = new HttpClient())
+                {
+                    try
+                    {
+                        HttpResponseMessage response = await client.DeleteAsync(apiUrl);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            MessageBox.Show("Commande supprimée avec succès");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Echec de la suppression");
+                        }
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur lors de la suppression de la commande : {ex.Message}");
 
                     }
                 }

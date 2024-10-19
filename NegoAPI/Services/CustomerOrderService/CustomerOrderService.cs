@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NegoAPI.Services.CustomerOrderDetailsService;
 using NegoSoftShared.Models.Entities;
 using NegoSoftShared.Models.ViewModels;
 using NegoSoftWeb.Data;
@@ -8,10 +9,12 @@ namespace NegoAPI.Services.CustomerOrderService
     public class CustomerOrderService : ICustomerOrderService
     {
         private readonly NegoSoftContext _context;
+        private readonly ICustomerOrderDetailsService _customerOrderDetailsService;
 
-        public CustomerOrderService(NegoSoftContext context)
+        public CustomerOrderService(NegoSoftContext context, ICustomerOrderDetailsService customerOrderDetailsService)
         {
             _context = context;
+            _customerOrderDetailsService = customerOrderDetailsService;
         }
 
         public async Task<CustomerOrder> CreateCustomerOrderAsync(CustomerOrderViewModel customerOrder)
@@ -41,6 +44,12 @@ namespace NegoAPI.Services.CustomerOrderService
             if (customerOrder == null)
             {
                 return null;
+            }
+            var orderDetails = await _customerOrderDetailsService.GetCustomerOrderDetailsByCustomerOrderIdAsync(id);
+            //suppression des détails de commande
+            foreach (var orderDetail in orderDetails)
+            {
+                _context.CustomerOrderDetails.Remove(orderDetail);
             }
             _context.CustomerOrders.Remove(customerOrder);
             await _context.SaveChangesAsync();
