@@ -16,21 +16,10 @@ namespace NegoSoftWeb.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService _productService;
-        private readonly NegoSoftContext _context;
 
         public ProductController(IProductService productService, NegoSoftContext context)
         {
             _productService = productService;
-            _context = context;
-        }
-
-        // GET: Product
-
-        [HttpGet]
-        public async Task<IActionResult> Index()
-        {
-            var products = await _productService.GetAllProductsAsync();
-            return View(products);
         }
 
         // GET: Product/Details/5
@@ -53,8 +42,8 @@ namespace NegoSoftWeb.Controllers
         }
 
         [HttpGet]
-        // GET: Product/Search
-        public async Task<IActionResult> Search(string searchString, Guid? typeId, Guid? supplierId, int? productYear, SortOrder sortOrder = SortOrder.None)
+        // GET: Product/
+        public async Task<IActionResult> Index(string searchString, Guid? typeId, Guid? supplierId, int? productYear, SortOrder sortOrder = SortOrder.None)
         {
         
             var model = await _productService.SearchAsync(searchString, typeId, supplierId, productYear, sortOrder); 
