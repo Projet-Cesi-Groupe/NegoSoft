@@ -305,7 +305,7 @@ namespace NegoSoftWPF
 
                     catch (Exception ex)
                     {
-                        MessageBox.Show($"Erreur lors de la suppression du produit : {ex.Message}");
+                        MessageBox.Show($"Erreur lors de la suppression du client : {ex.Message}");
 
                     }
                 }

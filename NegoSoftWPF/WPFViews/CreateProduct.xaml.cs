@@ -185,16 +185,7 @@ namespace NegoSoftWPF.WPFViews
                     var response = await client.PostAsync("api/product", content);
                     if (response.IsSuccessStatusCode)
                     {
-                        var responseMessage = await response.Content.ReadAsStringAsync();
-                        if (responseMessage.Contains("desactivated"))
-                        {
-                            MessageBox.Show("Le produit a été désactivé avec succès.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Le produit a été supprimé avec succès.");
-                        }
-
+                        MessageBox.Show("Produit crée avec succès");
                         this.Close();
                     }
                     else
