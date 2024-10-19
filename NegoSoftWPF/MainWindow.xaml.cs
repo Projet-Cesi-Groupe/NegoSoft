@@ -20,6 +20,7 @@ namespace NegoSoftWPF
     public partial class MainWindow : Window
     {
         //Attributs
+        private bool displayDetailsButton;
         private string apiUrl;
         private System.Type dataGridType;
         private System.Object selectedItem;
@@ -27,22 +28,31 @@ namespace NegoSoftWPF
         {
             InitializeComponent();
             LoadProductsFromApi();
+            UpdateButtonVisibility();
         }
         private void MenuItem_Produits(object sender, RoutedEventArgs e)
         {
             LoadProductsFromApi();
+            displayDetailsButton = false;
+            UpdateButtonVisibility();
         }
         private void MenuItem_Clients(object sender, RoutedEventArgs e)
         {
             LoadClientsFromApi();
+            displayDetailsButton = false;
+            UpdateButtonVisibility();
         }
         private void MenuItem_Fournisseurs(object sender, RoutedEventArgs e)
         {
             LoadSupplierFromApi();
+            displayDetailsButton = false;
+            UpdateButtonVisibility();
         }
         private void MenuItem_Commandes(object sender, RoutedEventArgs e)
         {
             LoadOrdersFromApi();
+            displayDetailsButton = true;
+            UpdateButtonVisibility();
         }
         private async void LoadProductsFromApi()
         {
@@ -179,6 +189,7 @@ namespace NegoSoftWPF
                 case System.Type t when t == typeof(Product):
                     CreateProduct createProduct = new CreateProduct();
                     bool? resultProd = createProduct.ShowDialog();
+
                     break;
             }
             refreshDataGrid();
@@ -188,24 +199,39 @@ namespace NegoSoftWPF
         {
             refreshDataGrid();
         }
+        private void UpdateButtonVisibility()
+        {
+            if (displayDetailsButton)
+            {
+                DetailsButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                DetailsButton.Visibility = Visibility.Collapsed;
+            }
+        }
         private void refreshDataGrid()
         {
             switch (dataGridType)
             {
                 case System.Type t when t == typeof(CustomerOrder):
                     LoadOrdersFromApi();
+                    displayDetailsButton = true;
                     break;
                 case System.Type t when t == typeof(Customer):
                     LoadClientsFromApi();
+                    displayDetailsButton = false;
                     break;
                 case System.Type t when t == typeof(Supplier):
                     LoadSupplierFromApi();
+                    displayDetailsButton = false;
                     break;
                 case System.Type t when t == typeof(Product):
                     LoadProductsFromApi();
+                    displayDetailsButton = false;
                     break;
-
             }
+            UpdateButtonVisibility();
         }
         private void Button_ClickUpdate(object sender, RoutedEventArgs e)
         {
@@ -282,7 +308,11 @@ namespace NegoSoftWPF
                 MessageBox.Show($"Erreur: {ex.Message}");
             }
         }
-        private async Task DeleteCustomer()
+        private async void ButtonDetails(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Command details");  
+        }
+            private async Task DeleteCustomer()
         {
             try
             {
