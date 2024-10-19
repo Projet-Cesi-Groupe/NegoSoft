@@ -1,0 +1,19 @@
+﻿<Window x:Class="NegoSoftWPF.WPFViews.adminLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NegoSoftWPF.WPFViews"
+        mc:Ignorable="d"
+        Title="adminLogin" Height="250" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <!-- First row is for the Menu (Auto height means it will take only as much space as needed) -->
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Label Content="Veuillez entrer votre mot de passe" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+        <TextBox x:Name="passBox" TextWrapping="Wrap" Text=""  HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Margin="0,0,0,0" Grid.RowSpan="2" Height="20"/>
+        <Button Content="Connexion" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Click="Button_Connexion"/>
+    </Grid>
+</Window>
