@@ -31,12 +31,14 @@
                         <a class="nav-link text-dark" asp-area="" asp-controller="Cart" asp-action="Index">
                             <img src="~/images/shopping-cart.png" alt="Cart" style="width: 30px; height: auto;" />
                         </a>
+                        <li>
+                            <form class="customForm my-2 my-lg-0" asp-controller="Product" asp-action="Search" method="get">
+                                
+                                <input class="form-control mr-sm-2" type="search" name="searchString" placeholder="Rechercher un produit..." aria-label="Rechercher" />
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+                            </form>
+                        </li>
                     </ul>
-
-                    <form class="form-inline my-2 my-lg-0" asp-controller="Product" asp-action="Search" method="get">
-                        <input class="form-control mr-sm-2" type="search" name="searchString" placeholder="Rechercher un produit..." aria-label="Rechercher" />
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
-                    </form>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
