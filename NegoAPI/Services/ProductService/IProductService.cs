@@ -12,6 +12,5 @@ namespace NegoAPI.Services.ProductService
         Task<Product> UpdateProductAsync(Product product);
         Task<Product> DeleteProductAsync(Guid id);
         Task<bool> ProductExistsAsync(Guid id);
-        Task<String> UploadFile(ProductViewModel product);
     }
 }

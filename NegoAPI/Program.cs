@@ -10,6 +10,8 @@ using NegoAPI.Services.SupplierOrderService;
 using NegoAPI.Services.CustomerOrderDetailsService;
 using NegoAPI.Services.CustomerOrderService;
 using NegoAPI.Services.AddressService;
+using Microsoft.AspNetCore.Identity;
+using NegoSoftWeb.Models.Entities;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -30,6 +32,10 @@ Env.Load();
 var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
 builder.Services.AddDbContext<NegoSoftContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddIdentity<User, IdentityRole>()
+    .AddEntityFrameworkStores<NegoSoftContext>()
+    .AddDefaultTokenProviders();
 
 
 builder.Services.AddScoped<IProductService, ProductService>();

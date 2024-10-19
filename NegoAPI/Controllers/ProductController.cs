@@ -119,6 +119,9 @@ namespace NegoAPI.Controllers
                 OldProduct.ProTypeId = product.ProTypeId;
                 OldProduct.ProSupplierId = product.ProSupplierId;
                 OldProduct.ProBoxPrice = product.ProBoxPrice;
+                OldProduct.ProYear = product.ProYear;
+                OldProduct.ProAlcoholVolume = product.ProAlcoholVolume;
+                OldProduct.ProIsActive = product.ProIsActive;
 
                 await _productService.UpdateProductAsync(OldProduct);
             }
