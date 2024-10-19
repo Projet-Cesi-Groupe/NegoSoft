@@ -7,9 +7,6 @@ using System.Net.Http.Json;
 
 namespace NegoSoftWPF.WPFViews
 {
-    /// <summary>
-    /// Logique d'interaction pour CreateSupplier.xaml
-    /// </summary>
     public partial class CreateSupplier : Window
     {
         //attributes

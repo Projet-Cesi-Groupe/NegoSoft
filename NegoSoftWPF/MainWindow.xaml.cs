@@ -209,7 +209,25 @@ namespace NegoSoftWPF
         }
         private void Button_ClickUpdate(object sender, RoutedEventArgs e)
         {
-
+            switch (dataGridType)
+            {
+                case System.Type t when t == typeof(CustomerOrder):
+                    MessageBox.Show("update Order");
+                    break;
+                case System.Type t when t == typeof(Customer):
+                    MessageBox.Show("create customer");
+                    break;
+                case System.Type t when t == typeof(Supplier):
+                    MessageBox.Show("update Order");
+                    break;
+                case System.Type t when t == typeof(Product):
+                    string selectedProduct = ((Product)selectedItem).ProId.ToString();
+                    Guid selectedProductGuid = Guid.Parse(selectedProduct);
+                    EditProductWindow editProduct = new EditProductWindow(selectedProductGuid);
+                    bool? resultProd = editProduct.ShowDialog();
+                    break;
+            }
+            refreshDataGrid();
         }
         private async void Button_ClickDelete(object sender, RoutedEventArgs e)
         {

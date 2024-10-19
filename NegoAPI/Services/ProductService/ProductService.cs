@@ -76,37 +76,7 @@ namespace NegoAPI.Services.ProductService
             return await _context.Products.AnyAsync(e => e.ProId == id);
         }
 
-        public async Task<String> UploadFile(ProductViewModel product)
-        {
-            //if (product.ProImageFile != null)
-            //{
-            //    // Get the path to the wwwroot folder
-            //    string uploadFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
-
-            //    // Create the folder if it doesn't exist
-            //    if (!Directory.Exists(uploadFolder))
-            //    {
-            //        Directory.CreateDirectory(uploadFolder);
-            //    }
-
-            //    // Generate a unique file name
-            //    string uniqueFileName = Guid.NewGuid().ToString() + "_" + product.ProImageFile.FileName;
-
-            //    // Combine the folder path and the file name
-            //    string filePath = Path.Combine(uploadFolder, uniqueFileName);
-
-            //    // Sauvegarde le fichier sur le serveur
-            //    using (var fileStream = new FileStream(filePath, FileMode.Create))
-            //    {
-            //        await product.ProImageFile.CopyToAsync(fileStream);
-            //    }
-
-            //    product.ProPictureName = uniqueFileName;
-
-            //}
-            return product.ProPictureName;
-
-        }
+        
 
     }
 }
