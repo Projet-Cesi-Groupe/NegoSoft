@@ -1,16 +1,55 @@
-﻿@model IEnumerable<NegoSoftShared.Models.Entities.Product>
-
-@{
-    ViewData["Title"] = "Nos Produits";
-}
+﻿@using NegoSoftWeb.Models.Entities
+@using NegoSoftWeb.Models.ViewModels
+@model ProductSearchViewModel
 
 <div class="container py-5" product-page>
-    <h1 class="text-center">Nos Produits</h1>
+    <h1 class="text-center">Nos produits</h1>
+
+    <form method="get" asp-controller="Product" asp-action="Search">
+        <!-- On prend la valeur de la recherche pour la renvoyer de nouveau avec les filtres -->
+        <input type="hidden" name="searchString" value="@Context.Request.Query["searchString"]" />
+
+        <select name="typeId" onchange="this.form.submit()" class="form-control">
+            <option value="">Tous les types</option>
+            @foreach (var type in Model.ProductTypes)
+            {
+                var selectedAttribute = Model.SelectedTypeId == type.TypId ? "selected" : "";
+                @Html.Raw($"<option value='{type.TypId}' {selectedAttribute}>{type.TypLibelle}</option>")
+            }
+        </select>
+        <select name="supplierId" onchange="this.form.submit()" class="form-control">
+            <option value="">Tous les fournisseurs</option>
+            @foreach (var supplier in Model.ProductSuppliers)
+            {
+                var selectedAttribute = Model.SelectedSupplierId == supplier.SupId ? "selected" : "";
+                @Html.Raw($"<option value='{supplier.SupId}' {selectedAttribute}>{supplier.SupName}</option>")
+            }
+        </select>
+        <select name="productYear" onchange="this.form.submit()" class="form-control">
+            <option value="">Toutes les Années</option>
+            @foreach (var year in Model.ProductYears)
+            {
+                var selectedAttribute = Model.SelectedYear == year ? "selected" : "";
+                @Html.Raw($"<option value='{year}' {selectedAttribute}>{year}</option>")
+            }
+        </select>
+
+        <!-- Champ de sélection pour le tri -->
+        <select name="sortOrder" onchange="this.form.submit()" class="form-control">
+            <option value="">Aucun Tri</option>
+            @foreach (var sortOrder in Enum.GetValues(typeof(SortOrder)).Cast<SortOrder>())
+            {
+                var selectedAttribute = Model.SelectedSortOrder == sortOrder ? "selected" : "";
+                var sortOrderValue = sortOrder.ToString();
+                @Html.Raw($"<option value='{sortOrderValue}' {selectedAttribute}>{sortOrderValue.Replace("Asc", " (Ascendant)").Replace("Desc", " (Descendant)").Replace("Name", "Nom").Replace("Price", "Prix")}</option>")
+            }
+        </select>
+    </form>
 
     <div class="row">
-        @foreach (var product in Model)
+        @foreach (var product in Model.Products)
         {
-            @if (!product.ProIsActive)
+          if (!product.ProIsActive)
 			{
 				continue;
 			}
@@ -19,28 +58,9 @@
                     <img src="https://localhost:7101/uploads/@product.ProPictureName" class="card-img-top img-responsive" alt="@product.ProName" />
                     <div class="card-body">
                         <h5 class="card-title">@product.ProName</h5>
-                        <p class="card-text">
-                            @if (!string.IsNullOrEmpty(product.ProDescription))
-                            {
-                                @product.ProDescription
-                            }
-                            else
-                            {
-                                <span>Description non disponible</span>
-                            }
-                        </p>
+                        <p class="card-text">@product.ProDescription</p>
                         <p class="card-text">Type: @product.Type.TypLibelle - Stock: @product.ProStock</p>
-                        <div class="price">
-                            @if (product.ProBoxPrice.HasValue)
-                            {
-                                <div>Prix Unitaire: @product.ProPrice €</div>
-                                <div>Prix par Carton: @product.ProBoxPrice.Value €</div>
-                            }
-                            else
-                            {
-                                <div class="price"> @product.ProPrice € </div>
-                            }
-                        </div>
+                        <div class="price">@product.ProPrice €</div>
                         <a href="@Url.Action("Details", "Product", new { id = @product.ProId })" class="btn btn-primary">Acheter</a>
                     </div>
                 </div>
