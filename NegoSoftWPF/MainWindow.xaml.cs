@@ -227,7 +227,10 @@ namespace NegoSoftWPF
                 case System.Type t when t == typeof(Product):
                     CreateProduct createProduct = new CreateProduct();
                     bool? resultProd = createProduct.ShowDialog();
-
+                    break;
+                case System.Type t when t == typeof(SupplierOrder):
+                    CreateSupplierOrder createSupplierOrder = new CreateSupplierOrder();
+                    bool? resultSupOrd = createSupplierOrder.ShowDialog();
                     break;
             }
             refreshDataGrid();
