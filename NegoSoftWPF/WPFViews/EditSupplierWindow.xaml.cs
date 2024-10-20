@@ -80,12 +80,12 @@ namespace NegoSoftWPF.WPFViews
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Supplier updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Fournisseur mis à jour avec succès", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Failed to update supplier", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Erreur lors de la mise à jour du fournisseur", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)

@@ -81,12 +81,12 @@ namespace NegoSoftWPF.WPFViews
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Customer updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Client mis à jour avec succès", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Failed to update customer", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Erreur lors de la mise à jour du client", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)

@@ -26,9 +26,10 @@
             <Menu Grid.Row="1" VerticalAlignment="Top" Height="30" Background="{StaticResource MenuBackgroundColor}" 
               Margin="10,0,10,10">
                 <MenuItem Header="Produits" Click="MenuItem_Produits"/>
+                <MenuItem Header="Familles Produits" Click="MenuItem_FamProd"/>
                 <MenuItem Header="Clients" Click="MenuItem_Clients"/>
-                <MenuItem Header="Fournisseurs" Click="MenuItem_Fournisseurs"/>
                 <MenuItem Header="Commandes Client" Click="MenuItem_CommandesClient"/>
+                <MenuItem Header="Fournisseurs" Click="MenuItem_Fournisseurs"/>
                 <MenuItem Header="Commandes Fournisseur" Click="MenuItem_CommandesFournisseur"/>
             </Menu>
 

@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using NegoSoftShared.Models.Entities;
 using NegoSoftWPF.WPFViews;
 using Newtonsoft.Json;
@@ -61,6 +62,12 @@ namespace NegoSoftWPF
             displayDetailsButton = true;
             UpdateButtonVisibility();
         }
+        private void MenuItem_FamProd(object sender, RoutedEventArgs e)
+        {
+            LoadTypesFromApi();
+            displayDetailsButton = false;
+            UpdateButtonVisibility();
+        }
 
         private async void LoadProductsFromApi()
         {
@@ -90,6 +97,33 @@ namespace NegoSoftWPF
             }
         }
 
+        private async void LoadTypesFromApi()
+        {
+            try
+            {
+                apiUrl = "https://localhost:7101/api/type";
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+                        List<NegoSoftShared.Models.Entities.Type> data = JsonConvert.DeserializeObject<List<NegoSoftShared.Models.Entities.Type>>(jsonResponse);
+                        dataTab.ItemsSource = data;
+                        dataGridType = typeof(NegoSoftShared.Models.Entities.Type);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to fetch data from API.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
         private async void LoadSupplierFromApi()
         {
             try
@@ -234,6 +268,10 @@ namespace NegoSoftWPF
                     CreateSupplierOrder createSupplierOrder = new CreateSupplierOrder();
                     bool? resultSupOrd = createSupplierOrder.ShowDialog();
                     break;
+                case System.Type t when t == typeof(NegoSoftShared.Models.Entities.Type):
+                    CreateType createType = new CreateType();
+                    bool? resultType = createType.ShowDialog();
+                    break;
             }
             refreshDataGrid();
 
@@ -277,6 +315,10 @@ namespace NegoSoftWPF
                     LoadSupplierOrdersFromApi();
                     displayDetailsButton = true;
                     break;
+                case System.Type t when t == typeof(NegoSoftShared.Models.Entities.Type):
+                    LoadTypesFromApi();
+                    displayDetailsButton = false;
+                    break;
             }
             UpdateButtonVisibility();
         }
@@ -314,6 +356,12 @@ namespace NegoSoftWPF
                     EditSupplierOrderWindow editSupOrder = new EditSupplierOrderWindow(selectedSupOrderGuid);
                     bool? resultSupOrder = editSupOrder.ShowDialog();
                     break;
+                case System.Type t when t == typeof(NegoSoftShared.Models.Entities.Type) && selectedItem != null:
+                    string selectedType = ((NegoSoftShared.Models.Entities.Type)selectedItem).TypId.ToString();
+                    Guid selectedTypeGuid = Guid.Parse(selectedType);
+                    EditTypeWindow editType = new EditTypeWindow(selectedTypeGuid);
+                    bool? resultType = editType.ShowDialog();
+                    break;
             }
             refreshDataGrid();
         }
@@ -335,6 +383,9 @@ namespace NegoSoftWPF
                     break;
                 case System.Type t when t == typeof(SupplierOrder) && selectedItem != null:
                     await DeleteSupplierOrder();
+                    break;
+                case System.Type t when t == typeof(NegoSoftShared.Models.Entities.Type) && selectedItem != null:
+                    await DeleteType();
                     break;
             }
             refreshDataGrid();
@@ -365,6 +416,39 @@ namespace NegoSoftWPF
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Erreur lors de la suppression du produit : {ex.Message}");
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erreur: {ex.Message}");
+            }
+        }
+
+        private async Task DeleteType()
+        {
+            try
+            {
+                string selectedType = ((NegoSoftShared.Models.Entities.Type)selectedItem).TypId.ToString();
+                apiUrl = "https://localhost:7101/api/Type/" + selectedType;
+
+                using var client = new HttpClient();
+                try
+                {
+                    HttpResponseMessage response = await client.DeleteAsync(apiUrl);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        MessageBox.Show("Famille produit supprimée avec succès");
+                    }
+                    else
+                    {
+                        MessageBox.Show("La famille produit n'a pas pus être supprimée car des produits lui sont associées.");
+                    }
+                }
+
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erreur lors de la suppression de la famille produit : {ex.Message}");
 
                 }
             }
