@@ -155,7 +155,7 @@ namespace NegoAPI.Controllers
 
                 if (!response.ProIsActive)
                 {
-                    return Ok("Produit désactivé avec succès.");
+                    return Ok("Le produit a été désactivé car celui-ci est utilisé dans une commande.");
                 }
 
                 return Ok("Produit supprimé avec succès.");

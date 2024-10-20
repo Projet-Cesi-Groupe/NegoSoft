@@ -180,7 +180,8 @@ namespace NegoSoftWPF
                     MessageBox.Show("create Order");
                     break;
                 case System.Type t when t == typeof(Customer):
-                    MessageBox.Show("create customer");
+                    CreateCustomer createCustomer = new CreateCustomer();
+                    bool? resultCus = createCustomer.ShowDialog();
                     break;
                 case System.Type t when t == typeof(Supplier):
                     CreateSupplier createSupplier = new CreateSupplier();
@@ -237,25 +238,25 @@ namespace NegoSoftWPF
         {
             switch (dataGridType)
             {
-                case System.Type t when t == typeof(CustomerOrder):
+                case System.Type t when t == typeof(CustomerOrder) && selectedItem != null:
                     string selectedOrder = ((CustomerOrder)selectedItem).CoId.ToString();
                     Guid selectedOrderGuid = Guid.Parse(selectedOrder);
                     EditCustomerOrderWindow editOrderWindow = new EditCustomerOrderWindow(selectedOrderGuid);
                     bool? resultOrder = editOrderWindow.ShowDialog();
                     break;
-                case System.Type t when t == typeof(Customer):
+                case System.Type t when t == typeof(Customer) && selectedItem != null:
                     string selectedCustomer = ((Customer)selectedItem).CusId.ToString();
                     Guid selectedCustomerGuid = Guid.Parse(selectedCustomer);
                     EditCustomerWindow editCustomer = new EditCustomerWindow(selectedCustomerGuid);
                     bool? resultCus = editCustomer.ShowDialog();
                     break;
-                case System.Type t when t == typeof(Supplier):
+                case System.Type t when t == typeof(Supplier) && selectedItem != null:
                     string selectedSupplier = ((Supplier)selectedItem).SupId.ToString();
                     Guid selectedSupplierGuid = Guid.Parse(selectedSupplier);
                     EditSupplierWindow editSupplier = new EditSupplierWindow(selectedSupplierGuid);
                     bool? resultSup = editSupplier.ShowDialog();
                     break;
-                case System.Type t when t == typeof(Product):
+                case System.Type t when t == typeof(Product) && selectedItem != null:
                     string selectedProduct = ((Product)selectedItem).ProId.ToString();
                     Guid selectedProductGuid = Guid.Parse(selectedProduct);
                     EditProductWindow editProduct = new EditProductWindow(selectedProductGuid);
@@ -268,16 +269,16 @@ namespace NegoSoftWPF
         {
             switch (dataGridType)
             {
-                case System.Type t when t == typeof(CustomerOrder):
+                case System.Type t when t == typeof(CustomerOrder) && selectedItem != null:
                     await DeleteCustomerOrder();
                     break;
-                case System.Type t when t == typeof(Customer):
+                case System.Type t when t == typeof(Customer) && selectedItem != null:
                     await DeleteCustomer();
                     break;
-                case System.Type t when t == typeof(Supplier):
+                case System.Type t when t == typeof(Supplier) && selectedItem != null:
                     await DeleteSupplier(); ;
                     break;
-                case System.Type t when t == typeof(Product):
+                case System.Type t when t == typeof(Product) && selectedItem != null:
                     await DeleteProduct();
                     break;
             }
@@ -324,12 +325,12 @@ namespace NegoSoftWPF
             CustomerOrderDetailsWindow customerOrderDetailsWindow = new CustomerOrderDetailsWindow(selectedOrderGuid);
             bool? resultOrder = customerOrderDetailsWindow.ShowDialog();
         }
-            private async Task DeleteCustomer()
+        private async Task DeleteCustomer()
         {
             try
             {
                 string selectedCustomer = ((Customer)selectedItem).CusId.ToString();
-                apiUrl = "https://localhost:7101/api/Product/" + selectedCustomer;
+                apiUrl = "https://localhost:7101/api/Customer/" + selectedCustomer;
                 using (var client = new HttpClient())
                 {
                     try
@@ -341,7 +342,7 @@ namespace NegoSoftWPF
                         }
                         else
                         {
-                            MessageBox.Show("Echec de la suppression");
+                            MessageBox.Show("Le client n'a pas pu être supprimé car des commandes lui sont associées");
                         }
                     }
 
@@ -374,7 +375,7 @@ namespace NegoSoftWPF
                         }
                         else
                         {
-                            MessageBox.Show("Echec de la suppression");
+                            MessageBox.Show("Le fournisseur n'a pas pu être supprimé car des commandes lui sont associées");
                         }
                     }
 

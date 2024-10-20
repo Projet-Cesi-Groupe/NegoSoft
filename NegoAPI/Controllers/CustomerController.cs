@@ -31,7 +31,7 @@ namespace NegoAPI.Controllers
         }
 
         // GET: api/customer/users/ids
-        // Route qui renvoie la liste des ids des utilisateurs
+        // Route qui renvoie la liste des utilisateurs lié à un client
         [HttpGet("users/ids")]
         public async Task<ActionResult<List<User>>> GetUserIds()
         {

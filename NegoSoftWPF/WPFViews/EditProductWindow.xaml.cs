@@ -56,12 +56,14 @@ namespace NegoSoftWPF.WPFViews
                 }
                 else
                 {
-                    MessageBox.Show("Product not found", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Produit introuvable", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                    this.Close();
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error loading product data: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Erreur lors de la récupération des données du produit: {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.Close();
             }
         }
 
@@ -89,17 +91,17 @@ namespace NegoSoftWPF.WPFViews
 
                 if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Product updated successfully", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Produit mis à jour avec succès", "Succès", MessageBoxButton.OK, MessageBoxImage.Information);
                     this.Close(); 
                 }
                 else
                 {
-                    MessageBox.Show("Failed to update product", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show($"Erreur lors de la mise à jour du produit: {response.ReasonPhrase}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error updating product: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Erreur lors de la mise à jour du produit: {ex.Message}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
