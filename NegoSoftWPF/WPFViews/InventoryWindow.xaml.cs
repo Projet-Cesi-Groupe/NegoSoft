@@ -8,6 +8,8 @@ using System.Windows;
 using Newtonsoft.Json;
 using NegoSoftShared.Models.ViewModels;
 using NegoSoftShared.Models.Entities;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace NegoSoftWPF.WPFViews
 {
@@ -123,6 +125,36 @@ namespace NegoSoftWPF.WPFViews
             {
                 e.Handled = true; // Empêche l'entrée si ce n'est pas un chiffre
                 MessageBox.Show("Veuillez entrer uniquement des chiffres positifs");
+            }
+        }
+
+        private void ProductDataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Tab)
+            {
+                e.Handled = true; // Empêche le comportement par défaut de Tab
+                
+                //On récupère la cellule actuelle
+                var currentCell = ProductDataGrid.CurrentCell;
+                if (currentCell != null)
+                {
+                    // On récupère l'index de la ligne actuelle
+                    int currentRowIndex = ProductDataGrid.Items.IndexOf(currentCell.Item);
+                    int totalRows = ProductDataGrid.Items.Count;
+
+                    // On regarde si on est pas à la dernière ligne
+                    if (currentRowIndex + 1 < totalRows)
+                    {
+                        // On sélectionne la ligne suivante
+                        ProductDataGrid.SelectedIndex = currentRowIndex + 1;
+                        ProductDataGrid.CurrentCell = new DataGridCellInfo
+                            (
+                                ProductDataGrid.Items[currentRowIndex + 1],
+                                ProductDataGrid.Columns[3]
+                            );
+                        ProductDataGrid.BeginEdit(); // Optionnel : commencer l'édition
+                    }
+                }
             }
         }
 

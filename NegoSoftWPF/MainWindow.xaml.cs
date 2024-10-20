@@ -502,6 +502,7 @@ namespace NegoSoftWPF
         {
             InventoryWindow inventoryWindow = new InventoryWindow();
             bool? result = inventoryWindow.ShowDialog();
+            refreshDataGrid();
         }
         private async Task DeleteCustomer()
         {
