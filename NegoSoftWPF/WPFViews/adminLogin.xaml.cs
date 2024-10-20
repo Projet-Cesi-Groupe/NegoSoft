@@ -53,7 +53,7 @@ namespace NegoSoftWPF.WPFViews
 
         private async void Button_Connexion(object sender, RoutedEventArgs e)
         {
-            if (VerifyPassword(passBox.Text, _password))
+            if (VerifyPassword(passBox.Password, _password))
             {
                 MainWindow mainwindow = new MainWindow();
                 mainwindow.Show();
@@ -62,8 +62,15 @@ namespace NegoSoftWPF.WPFViews
             else
             {
                 MessageBox.Show("Mot de passe incorrect");
+            }    
+        }
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                Button_Connexion(sender, e);
             }
-                  
         }
     }
 }
