@@ -36,7 +36,6 @@ namespace NegoSoftWPF.WPFViews
             InitializeComponent();
             _httpClient = new HttpClient();
             _orderDetails = new List<SupplierOrderDetailsViewModel>();
-            OrderStateTextBox.Text = "En attente";
             LoadSuppliersAsync();
             LoadProductsAsync();
         }
@@ -169,7 +168,6 @@ namespace NegoSoftWPF.WPFViews
                 {
                     SoSupplierId = (Guid)SupplierIdComboBox.SelectedValue,
                     SoAddressId = _addressId,
-                    SoState = OrderStateTextBox.Text,
                     SoTotal = float.Parse(OrderTotalTextBox.Text),
                     SoDate = DateTime.Now
                 };

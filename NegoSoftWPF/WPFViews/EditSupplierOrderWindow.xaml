@@ -23,20 +23,21 @@
                 <Label Content="Adresse de facturation" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
                 <TextBlock x:Name="BillingStreetTextBlock" Margin="0 0 0 10" Foreground="{StaticResource TextColor}"/>
 
-                <Label Content="État de la commande" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
-                <TextBox x:Name="OrderStateTextBox" Margin="0 0 0 10"/>
-
                 <Label Content="Total" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
                 <TextBox x:Name="OrderTotalTextBox" Margin="0 0 0 10"/>
 
+                <StackPanel Orientation="Horizontal">
+                    <CheckBox x:Name="OrderStateCheckBox" Content="Commande Livrée" FontWeight="Bold" Foreground="{StaticResource TextColor}" Margin="10" Height="14"/>
+                </StackPanel>
+
                 <TextBlock Text="Détails de la commande" FontSize="16" FontWeight="Bold" Margin="10 10 0 20" Foreground="{StaticResource TextColor}"/>
 
-                <DataGrid x:Name="OrderDetailsDataGrid" AutoGenerateColumns="False" Margin="0 0 0 20" Height="150">
+                <DataGrid x:Name="OrderDetailsDataGrid" AutoGenerateColumns="False" Margin="0 0 0 20" Height="150" CanUserAddRows="False" >
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Produit" Binding="{Binding SodProductId}"/>
-                        <DataGridTextColumn Header="Nom" Binding="{Binding Product.ProName}"/>
-                        <DataGridTextColumn Header="Quantité" Binding="{Binding SodQuantity}"/>
-                        <DataGridTextColumn Header="Prix" Binding="{Binding SodPrice}"/>
+                        <DataGridTextColumn Header="Produit" Binding="{Binding SodProductId}" Width="*"/>
+                        <DataGridTextColumn Header="Nom" Binding="{Binding Product.ProName}" Width="*"/>
+                        <DataGridTextColumn Header="Quantité" Binding="{Binding SodQuantity}" Width="*"/>
+                        <DataGridTextColumn Header="Prix" Binding="{Binding SodPrice}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
 

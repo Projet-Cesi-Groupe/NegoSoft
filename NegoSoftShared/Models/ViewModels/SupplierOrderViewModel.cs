@@ -12,6 +12,6 @@ namespace NegoSoftShared.Models.ViewModels
         public Guid SoAddressId { get; set; }
         public float SoTotal { get; set; }
         public DateTime SoDate { get; set; }
-        public string SoState { get; set; }
+        public bool SoState { get; set; }
     }
 }

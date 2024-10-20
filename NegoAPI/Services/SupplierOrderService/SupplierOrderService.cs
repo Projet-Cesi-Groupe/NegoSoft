@@ -31,7 +31,7 @@ namespace NegoAPI.Services.SupplierOrderService
                 SoTotal = supplierOrder.SoTotal,
                 SoSupplierId = supplierOrder.SoSupplierId,
                 SoAddressId = supplierOrder.SoAddressId,
-                SoState = supplierOrder.SoState
+                SoState = false
             };
             _context.SupplierOrders.Add(newSupplierOrder);
             await _context.SaveChangesAsync();

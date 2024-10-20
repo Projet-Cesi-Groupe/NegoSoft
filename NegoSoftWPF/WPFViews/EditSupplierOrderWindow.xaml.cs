@@ -16,6 +16,7 @@ namespace NegoSoftWPF.WPFViews
     {
         private readonly Guid _orderId;
         private readonly HttpClient _httpClient;
+        private bool _wasAlreadyChecked = false;
 
         public EditSupplierOrderWindow(Guid orderId)
         {
@@ -39,8 +40,13 @@ namespace NegoSoftWPF.WPFViews
                 {
                     SupplierIdComboBox.SelectedValue = order.SoSupplierId;
                     AddressIdComboBox.SelectedValue = order.SoAddressId;
-                    OrderStateTextBox.Text = order.SoState;
+                    OrderStateCheckBox.IsChecked = order.SoState;
                     OrderTotalTextBox.Text = order.SoTotal.ToString();
+                    if (order.SoState)
+                    {
+                        OrderStateCheckBox.IsEnabled = false;
+                        _wasAlreadyChecked = true;
+    }
                 }
                 else
                 {
@@ -153,7 +159,7 @@ namespace NegoSoftWPF.WPFViews
                 {
                     SoSupplierId = (Guid)SupplierIdComboBox.SelectedValue,
                     SoAddressId = (Guid)AddressIdComboBox.SelectedValue,
-                    SoState = OrderStateTextBox.Text,
+                    SoState = OrderStateCheckBox.IsChecked ?? false,
                     SoTotal = float.Parse(OrderTotalTextBox.Text),
                     SoDate = DateTime.Now
                 };
@@ -174,6 +180,17 @@ namespace NegoSoftWPF.WPFViews
                             {
                                 MessageBox.Show($"Erreur lors de la mise à jour du détail de la commande ID: {orderDetail.SodId}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
                                 return;
+                            }
+                            if (updatedOrder.SoState && !_wasAlreadyChecked)
+                            {
+                                var productResponse = await _httpClient.PutAsJsonAsync(
+                                $"https://localhost:7101/api/Product/stock/{orderDetail.SodProductId}", orderDetail.SodQuantity);
+
+                                if (!productResponse.IsSuccessStatusCode)
+                                {
+                                    MessageBox.Show($"Erreur lors de la mise à jour du stock du produit ID: {orderDetail.SodProductId}", "Erreur", MessageBoxButton.OK, MessageBoxImage.Error);
+                                    return;
+                                }
                             }
                         }
                     }

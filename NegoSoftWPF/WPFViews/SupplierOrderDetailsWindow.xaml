@@ -32,12 +32,12 @@
 
                 <TextBlock Text="Lignes de Commande" FontSize="16" FontWeight="Bold" Margin="10 0 0 20" Foreground="{StaticResource TextColor}"/>
 
-                <DataGrid x:Name="OrderDetailsDataGrid" AutoGenerateColumns="False" Margin="10" Height="150">
+                <DataGrid x:Name="OrderDetailsDataGrid" AutoGenerateColumns="False" Margin="10" Height="150" CanUserAddRows="False" IsReadOnly="True">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Produit" Binding="{Binding SodProductId}"/>
-                        <DataGridTextColumn Header="Nom" Binding="{Binding Product.ProName}"/>
-                        <DataGridTextColumn Header="Quantité" Binding="{Binding SodQuantity}"/>
-                        <DataGridTextColumn Header="Prix" Binding="{Binding SodPrice}"/>
+                        <DataGridTextColumn Header="Produit" Binding="{Binding SodProductId}" Width="*"/>
+                        <DataGridTextColumn Header="Nom" Binding="{Binding Product.ProName}" Width="*"/>
+                        <DataGridTextColumn Header="Quantité" Binding="{Binding SodQuantity}" Width="*"/>
+                        <DataGridTextColumn Header="Prix" Binding="{Binding SodPrice}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
 

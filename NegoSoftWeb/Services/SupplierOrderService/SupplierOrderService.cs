@@ -65,7 +65,6 @@ namespace NegoSoftWeb.Services.SupplierOrderService
                     SoSupplierId = supplierId,
                     SoAddressId = supplier.SupDefaultAddressId,
                     SoDate = DateTime.Now,
-                    SoState = "En attente",
                     SoTotal = 0
                 };
 

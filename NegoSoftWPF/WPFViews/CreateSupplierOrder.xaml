@@ -1,7 +1,7 @@
 ﻿<Window x:Class="NegoSoftWPF.WPFViews.CreateSupplierOrder"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="NegoSud -- Création Commande Fournisseur" Height="700" Width="700" ResizeMode="NoResize"
+        Title="NegoSud -- Création Commande Fournisseur" Height="700" Width="720" ResizeMode="NoResize"
         Icon="/WPFViews/images/vin.ico" WindowStartupLocation="CenterScreen"
         Background="{StaticResource BackgroundColor}">
     <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="4" Padding="20">
@@ -10,25 +10,22 @@
                 <StackPanel Orientation="Vertical">
                     <TextBlock Text="Création de Commande" FontSize="18" FontWeight="Bold" Margin="0 0 0 20" Foreground="{StaticResource TextColor}"/>
                     <TextBlock Text="Entête de commande" FontSize="15" FontWeight="Bold" Margin="0 0 0 20" Height="30" Foreground="{StaticResource TextColor}"/>
-                    <StackPanel Orientation="Horizontal" Margin="10" Height="135">
-                        <StackPanel Orientation="Vertical" Width="135" Height="130">
+                    <StackPanel Orientation="Horizontal" Height="135">
+                        <StackPanel Orientation="Vertical" Width="135" Height="130" Margin="10,0,10,10">
                             <Label Content="Fournisseur" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
                             <ComboBox x:Name="SupplierIdComboBox" Margin="0 0 0 10" SelectionChanged="SupplierIdSelectionChanged" Height="20"/>
                             <TextBlock x:Name="SupplierNameTextBlock" Margin="0 0 0 10" Foreground="{StaticResource TextColor}"/>
                             <TextBlock x:Name="SupplierEmailTextBlock" Margin="0 0 0 10" Foreground="{StaticResource TextColor}"/>
                             <TextBlock x:Name="SupplierPhoneTextBlock" Margin="0 0 0 10" Foreground="{StaticResource TextColor}"/>
                         </StackPanel>
-                        <StackPanel  Orientation="Vertical" Margin="10" Height="110">
-                            <Label Content="État de la commande" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
-                            <TextBox x:Name="OrderStateTextBox" Margin="0 0 0 10"/>
-
+                        <StackPanel  Orientation="Vertical" Margin="10,0,10,10" Width="135" Height="130">
                             <Label Content="Total" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
-                            <TextBox x:Name="OrderTotalTextBox" Margin="0 0 0 10"/>
+                            <TextBox x:Name="OrderTotalTextBox" Margin="0 0 0 10" Height="20"/>
                         </StackPanel>
                     </StackPanel>
-                    <TextBlock Text="Adresses" FontSize="18" FontWeight="Bold" Margin="0 0 0 20" Foreground="{StaticResource TextColor}"/>
+                    <TextBlock Text="Adresses" FontSize="18" FontWeight="Bold" Margin="10" Foreground="{StaticResource TextColor}"/>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Vertical" Margin="10">
                             <Label Content="Adresse de Facturation" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
                             <TextBox x:Name="BillingStreetTextBox" Margin="0 0 0 10"/>
                             <Label Content="Ville de Facturation" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
@@ -38,7 +35,7 @@
                             <Label Content="Pays de Facturation" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
                             <TextBox x:Name="BillingCountryTextBox" Margin="0 0 0 10"/>
                         </StackPanel>
-                        <StackPanel Orientation="Vertical" Margin="20 0 0 0">
+                        <StackPanel Orientation="Vertical" Margin="10">
                             <Label Content="Adresse de Livraison" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
                             <TextBox x:Name="DeliveryStreetTextBox" Margin="0 0 0 10"/>
                             <Label Content="Ville de Livraison" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
@@ -67,11 +64,11 @@
                     </StackPanel>
                     <TextBlock Text="Lignes de la commande" FontSize="16" FontWeight="Bold" Margin="0 10 0 20" Foreground="{StaticResource TextColor}"/>
 
-                    <DataGrid x:Name="OrderDetailsDataGrid" AutoGenerateColumns="False" Margin="0 0 0 20" Height="150" Width="270">
+                    <DataGrid x:Name="OrderDetailsDataGrid" AutoGenerateColumns="False" Margin="0 0 0 20" Height="150" Width="270" CanUserAddRows="False" IsReadOnly="True">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="Produit" Binding="{Binding SodProductId}" Width="180"/>
-                            <DataGridTextColumn Header="Quantité" Binding="{Binding SodQuantity}"/>
-                            <DataGridTextColumn Header="Prix" Binding="{Binding SodPrice}"/>
+                            <DataGridTextColumn Header="Produit" Binding="{Binding SodProductId}" Width="*"/>
+                            <DataGridTextColumn Header="Quantité" Binding="{Binding SodQuantity}" Width="*"/>
+                            <DataGridTextColumn Header="Prix" Binding="{Binding SodPrice}" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button Content="Créer" Click="btnSave_Click" Margin="0 10 0 0"  Style="{StaticResource RoundedButtonStyle}"/>

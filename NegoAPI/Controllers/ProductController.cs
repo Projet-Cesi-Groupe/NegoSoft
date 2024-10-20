@@ -21,7 +21,7 @@ namespace NegoAPI.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: api/Products
+        // GET: api/Product
         [HttpGet]
         public async Task<IActionResult> GetAllProduct()
         {
@@ -35,7 +35,7 @@ namespace NegoAPI.Controllers
             return Ok(products);
         }
 
-        // GET: api/Products/5
+        // GET: api/Product/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(Guid id)
         {
@@ -49,7 +49,7 @@ namespace NegoAPI.Controllers
             return Ok(product);
         }
 
-        // POST: api/Products
+        // POST: api/Product
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct([FromForm] ProductAddViewModel productViewModel, IFormFile image)
         {
@@ -98,7 +98,7 @@ namespace NegoAPI.Controllers
             return Ok("Product created successfully.");
         }
 
-        // PUT: api/Products/5
+        // PUT: api/Product/5
         [HttpPut("{id}")]
         public async Task<IActionResult> EditProduct(Guid id, ProductEditViewModel product)
         {
@@ -140,7 +140,7 @@ namespace NegoAPI.Controllers
             return NoContent();
         }
 
-        // DELETE: api/Products/5
+        // DELETE: api/Product/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
@@ -165,6 +165,37 @@ namespace NegoAPI.Controllers
                 return BadRequest(ex.Message);
             }
 
+        }
+
+        // PUT: api/Product/stock/id
+        [HttpPut("stock/{id}")]
+        public async Task<IActionResult> UpdateProductStock(Guid id, [FromBody] int newQuantity)
+        {
+            var product = await _productService.GetProductByIdAsync(id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                product.ProStock += newQuantity;
+                await _productService.UpdateProductAsync(product);
+            }
+            catch (Exception)
+            {
+                if (!await _productService.ProductExistsAsync(product.ProId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return StatusCode(500);
+                }
+            }
+
+            return NoContent();
         }
     }
 }

@@ -75,8 +75,5 @@ namespace NegoAPI.Services.ProductService
         {
             return await _context.Products.AnyAsync(e => e.ProId == id);
         }
-
-        
-
     }
 }

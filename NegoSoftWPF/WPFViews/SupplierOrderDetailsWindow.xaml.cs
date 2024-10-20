@@ -47,7 +47,14 @@ namespace NegoSoftWPF.WPFViews
                     string billingAddress = $"{order.Address.AddBillingStreet}, {order.Address.AddBillingCity}, {order.Address.AddBillingZipCode}, {order.Address.AddBillingCountry}";
                     BillingAddressTextBlock.Text = billingAddress;
 
-                    OrderStateTextBlock.Text = order.SoState;
+                    if (order.SoState)
+                    {
+                        OrderStateTextBlock.Text = "Livrée";
+                    }
+                    else
+                    {
+                        OrderStateTextBlock.Text = "En attente de livraison";
+                    }
                     OrderDateTextBlock.Text = order.SoDate.ToString();
                     OrderTotalTextBlock.Text = order.SoTotal.ToString();
                 }
