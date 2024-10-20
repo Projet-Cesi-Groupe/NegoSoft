@@ -87,5 +87,14 @@ namespace NegoAPI.Controllers
             return NoContent();
         }
 
+        // GET: api/supplierorderdetails/supplierorder/{id}
+        [HttpGet("supplierorder/{id}")]
+        public async Task<ActionResult<List<SupplierOrderDetails>>> GetSupplierOrderDetailsBySupplierOrderId(Guid id)
+        {
+            var supplierOrderDetails = await _supplierOrderDetailsService.GetSupplierOrderDetailsBySupplierOrderIdAsync(id);
+            if (supplierOrderDetails == null) return NotFound();
+            return Ok(supplierOrderDetails);
+        }
+
     }
 }

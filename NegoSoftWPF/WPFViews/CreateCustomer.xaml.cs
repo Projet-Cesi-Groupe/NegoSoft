@@ -66,27 +66,40 @@ namespace NegoSoftWPF.WPFViews
 
         private async void CreateButton_Click(object sender, RoutedEventArgs e)
         {
-            var customerViewModel = new CustomerViewModel
+            if (FirstNameTextBox.Text == "" ||
+                LastNameTextBox.Text == "" ||
+                EmailTextBox.Text == "" ||
+                PhoneTextBox.Text == "" ||
+                UserIdComboBox.SelectedItem == null)
             {
-                CusFirstName = FirstNameTextBox.Text,
-                CusLastName = LastNameTextBox.Text,
-                CusEmail = EmailTextBox.Text,
-                CusPhone = PhoneTextBox.Text,
-                CusUserId = (UserIdComboBox.SelectedItem as User)?.Id.ToString()
-            };
-
-            try
-            {
-                var response = await _httpClient.PostAsJsonAsync("https://localhost:7101/api/customer", customerViewModel);
-                response.EnsureSuccessStatusCode();
-
-                MessageBox.Show("Client créé avec succès !");
-                this.Close();
+                MessageBox.Show("Veuillez remplir tous les champs !");
+                return;
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show($"Erreur lors de la création du client: {ex.Message}");
+                var customerViewModel = new CustomerViewModel
+                {
+                    CusFirstName = FirstNameTextBox.Text,
+                    CusLastName = LastNameTextBox.Text,
+                    CusEmail = EmailTextBox.Text,
+                    CusPhone = PhoneTextBox.Text,
+                    CusUserId = (UserIdComboBox.SelectedItem as User)?.Id.ToString()
+                };
+
+                try
+                {
+                    var response = await _httpClient.PostAsJsonAsync("https://localhost:7101/api/customer", customerViewModel);
+                    response.EnsureSuccessStatusCode();
+
+                    MessageBox.Show("Client créé avec succès !");
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Erreur lors de la création du client: {ex.Message}");
+                }
             }
+            
         }
     }
 }

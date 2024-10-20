@@ -10,5 +10,6 @@ namespace NegoAPI.Services.SupplierOrderDetailsService
         Task<SupplierOrderDetails> DeleteSupplierOrderDetailsAsync(Guid id);
         Task<IEnumerable<SupplierOrderDetails>> GetAllSupplierOrderDetailsAsync();
         Task<SupplierOrderDetails> GetSupplierOrderDetailsByIdAsync(Guid id);
+        Task<IEnumerable<SupplierOrderDetails>> GetSupplierOrderDetailsBySupplierOrderIdAsync(Guid supplierOrderId);
     }
 }

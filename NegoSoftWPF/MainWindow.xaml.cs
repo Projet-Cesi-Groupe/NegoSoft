@@ -48,12 +48,20 @@ namespace NegoSoftWPF
             displayDetailsButton = false;
             UpdateButtonVisibility();
         }
-        private void MenuItem_Commandes(object sender, RoutedEventArgs e)
+        private void MenuItem_CommandesClient(object sender, RoutedEventArgs e)
         {
-            LoadOrdersFromApi();
+            LoadCustomerOrdersFromApi();
             displayDetailsButton = true;
             UpdateButtonVisibility();
         }
+
+        private void MenuItem_CommandesFournisseur(object sender, RoutedEventArgs e)
+        {
+            LoadSupplierOrdersFromApi();
+            displayDetailsButton = true;
+            UpdateButtonVisibility();
+        }
+
         private async void LoadProductsFromApi()
         {
             try
@@ -136,7 +144,7 @@ namespace NegoSoftWPF
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
-        private async void LoadOrdersFromApi()
+        private async void LoadCustomerOrdersFromApi()
         {
             try
             {
@@ -163,9 +171,37 @@ namespace NegoSoftWPF
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
+
+        private async void LoadSupplierOrdersFromApi()
+        {
+            try
+            {
+                apiUrl = "https://localhost:7101/api/SupplierOrder";
+                using (HttpClient client = new HttpClient())
+                {
+                    HttpResponseMessage response = await client.GetAsync(apiUrl);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string jsonResponse = await response.Content.ReadAsStringAsync();
+                        List<SupplierOrder> data = JsonConvert.DeserializeObject<List<SupplierOrder>>(jsonResponse);
+                        dataTab.ItemsSource = data;
+                        dataGridType = typeof(SupplierOrder);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to fetch data from API.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
         private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            var columnsToShow = new List<string> { "Supplier", "Type", "SupplierOrderDetails", "CustomerOrderDetails", "AlcoholProduct", "DefaultAddress", "CustomerOrders", "SupplierOrders", "Products", "Customer", "Address" };
+            var columnsToShow = new List<string> { "Supplier", "Type", "SupplierOrderDetails", "CustomerOrderDetails", "DefaultAddress", "CustomerOrders", "SupplierOrders", "Products", "Customer", "Address" };
 
             if (columnsToShow.Contains(e.PropertyName))
             {
@@ -177,7 +213,8 @@ namespace NegoSoftWPF
             switch (dataGridType)
             {
                 case System.Type t when t == typeof(CustomerOrder):
-                    MessageBox.Show("create Order");
+                    CreateCustomerOrder createCustomerOrder = new CreateCustomerOrder();
+                    bool? resultCusOrd = createCustomerOrder.ShowDialog();
                     break;
                 case System.Type t when t == typeof(Customer):
                     CreateCustomer createCustomer = new CreateCustomer();
@@ -216,7 +253,7 @@ namespace NegoSoftWPF
             switch (dataGridType)
             {
                 case System.Type t when t == typeof(CustomerOrder):
-                    LoadOrdersFromApi();
+                    LoadCustomerOrdersFromApi();
                     displayDetailsButton = true;
                     break;
                 case System.Type t when t == typeof(Customer):
@@ -230,6 +267,10 @@ namespace NegoSoftWPF
                 case System.Type t when t == typeof(Product):
                     LoadProductsFromApi();
                     displayDetailsButton = false;
+                    break;
+                case System.Type t when t == typeof(SupplierOrder):
+                    LoadSupplierOrdersFromApi();
+                    displayDetailsButton = true;
                     break;
             }
             UpdateButtonVisibility();
@@ -281,6 +322,9 @@ namespace NegoSoftWPF
                 case System.Type t when t == typeof(Product) && selectedItem != null:
                     await DeleteProduct();
                     break;
+                case System.Type t when t == typeof(SupplierOrder) && selectedItem != null:
+                    await DeleteSupplierOrder();
+                    break;
             }
             refreshDataGrid();
         }
@@ -320,10 +364,21 @@ namespace NegoSoftWPF
         }
         private async void ButtonDetails(object sender, RoutedEventArgs e)
         {
-            string selectedOrder = ((CustomerOrder)selectedItem).CoId.ToString();
-            Guid selectedOrderGuid = Guid.Parse(selectedOrder);
-            CustomerOrderDetailsWindow customerOrderDetailsWindow = new CustomerOrderDetailsWindow(selectedOrderGuid);
-            bool? resultOrder = customerOrderDetailsWindow.ShowDialog();
+            switch (dataGridType)
+            {
+                case System.Type t when t == typeof(CustomerOrder) && selectedItem != null:
+                    string selectedCusOrder = ((CustomerOrder)selectedItem).CoId.ToString();
+                    Guid selectedCusOrderGuid = Guid.Parse(selectedCusOrder);
+                    CustomerOrderDetailsWindow customerOrderDetailsWindow = new CustomerOrderDetailsWindow(selectedCusOrderGuid);
+                    bool? resultCusOrder = customerOrderDetailsWindow.ShowDialog();
+                    break;
+                case System.Type t when t == typeof(SupplierOrder) && selectedItem != null:
+                    string selectedSupOrder = ((SupplierOrder)selectedItem).SoId.ToString();
+                    Guid selectedSupOrderGuid = Guid.Parse(selectedSupOrder);
+                    SupplierOrderDetailsWindow supplierOrderDetailsWindow = new SupplierOrderDetailsWindow(selectedSupOrderGuid);
+                    bool? resultSupOrder = supplierOrderDetailsWindow.ShowDialog();
+                    break;
+            }
         }
         private async Task DeleteCustomer()
         {
@@ -398,6 +453,40 @@ namespace NegoSoftWPF
             {
                 string selectedOrder = ((CustomerOrder)selectedItem).CoId.ToString();
                 apiUrl = "https://localhost:7101/api/CustomerOrder/" + selectedOrder;
+                using (var client = new HttpClient())
+                {
+                    try
+                    {
+                        HttpResponseMessage response = await client.DeleteAsync(apiUrl);
+                        if (response.IsSuccessStatusCode)
+                        {
+                            MessageBox.Show("Commande supprimée avec succès");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Echec de la suppression");
+                        }
+                    }
+
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Erreur lors de la suppression de la commande : {ex.Message}");
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}");
+            }
+        }
+
+        private async Task DeleteSupplierOrder()
+        {
+            try
+            {
+                string selectedOrder = ((SupplierOrder)selectedItem).SoId.ToString();
+                apiUrl = "https://localhost:7101/api/SupplierOrder/" + selectedOrder;
                 using (var client = new HttpClient())
                 {
                     try

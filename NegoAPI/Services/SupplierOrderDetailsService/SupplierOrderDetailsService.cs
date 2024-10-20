@@ -48,7 +48,9 @@ namespace NegoAPI.Services.SupplierOrderDetailsService
         
         public async Task<SupplierOrderDetails> GetSupplierOrderDetailsByIdAsync(Guid id)
         {
-            return await _context.SupplierOrderDetails.FindAsync(id);
+            return await _context.SupplierOrderDetails
+                .Include(sod => sod.Product)
+                .FirstOrDefaultAsync(sod => sod.SodId == id);
         }
 
         public async Task<IEnumerable<SupplierOrderDetails>> GetAllSupplierOrderDetailsAsync()
@@ -76,6 +78,14 @@ namespace NegoAPI.Services.SupplierOrderDetailsService
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public async Task<IEnumerable<SupplierOrderDetails>> GetSupplierOrderDetailsBySupplierOrderIdAsync(Guid id)
+        {
+            return await _context.SupplierOrderDetails
+                .Where(sod => sod.SodOrderId == id)
+                .Include(sod => sod.Product)
+                .ToListAsync();
         }
     }
 }

@@ -21,7 +21,8 @@
             <MenuItem Header="Produits" Click="MenuItem_Produits"/>
             <MenuItem Header="Clients" Click="MenuItem_Clients"/>
             <MenuItem Header="Fournisseurs" Click="MenuItem_Fournisseurs"/>
-            <MenuItem Header="Commandes" Click="MenuItem_Commandes"/>
+            <MenuItem Header="Commandes Client" Click="MenuItem_CommandesClient"/>
+            <MenuItem Header="Commandes Fournisseur" Click="MenuItem_CommandesFournisseur"/>
         </Menu>
         <DataGrid x:Name="dataTab" Grid.Row="1" AutoGenerateColumns="True" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" Background="#692c33" VerticalAlignment="Stretch" Height="auto" Margin="0,0,0,0"  SelectionChanged="dataTab_selectionChange" />
         <StackPanel Orientation="Horizontal" Grid.Row="2">

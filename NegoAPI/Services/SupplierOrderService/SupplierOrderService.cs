@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NegoAPI.Services.SupplierOrderDetailsService;
 using NegoSoftShared.Models.Entities;
 using NegoSoftShared.Models.ViewModels;
 using NegoSoftWeb.Data;
@@ -8,10 +9,12 @@ namespace NegoAPI.Services.SupplierOrderService
     public class SupplierOrderService : ISupplierOrderService
     {
         private readonly NegoSoftContext _context;
+        private readonly ISupplierOrderDetailsService _supplierOrderDetailsService;
 
-        public SupplierOrderService(NegoSoftContext context)
+        public SupplierOrderService(NegoSoftContext context, ISupplierOrderDetailsService supplierOrderDetailsService)
         {
             _context = context;
+            _supplierOrderDetailsService = supplierOrderDetailsService;
         }
 
         public async Task<SupplierOrder> CreateSupplierOrderAsync(SupplierOrderViewModel supplierOrder)
@@ -42,6 +45,12 @@ namespace NegoAPI.Services.SupplierOrderService
             {
                 return null;
             }
+            var orderDetails = await _supplierOrderDetailsService.GetSupplierOrderDetailsBySupplierOrderIdAsync(id);
+            //suppression des détails de commande
+            foreach (var orderDetail in orderDetails)
+            {
+                _context.SupplierOrderDetails.Remove(orderDetail);
+            }
             _context.SupplierOrders.Remove(supplierOrder);
             await _context.SaveChangesAsync();
             return supplierOrder;
@@ -49,7 +58,10 @@ namespace NegoAPI.Services.SupplierOrderService
 
         public async Task<SupplierOrder> GetSupplierOrderByIdAsync(Guid id)
         {
-            return await _context.SupplierOrders.FindAsync(id);
+            return await _context.SupplierOrders
+                .Include(so => so.Supplier)
+                .Include(so => so.Address)
+                .FirstOrDefaultAsync(so => so.SoId == id);
         }
 
         public async Task<IEnumerable<SupplierOrder>> GetAllSupplierOrdersAsync()

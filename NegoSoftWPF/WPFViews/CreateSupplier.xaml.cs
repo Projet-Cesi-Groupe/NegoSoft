@@ -29,7 +29,6 @@ namespace NegoSoftWPF.WPFViews
                 BilCountryBox.Text != "")
             {
                 string request = "https://localhost:7101/api/Address";
-                addressId = Guid.NewGuid().ToString();
                 var address = new NegoSoftWeb.Models.ViewModels.AddressViewModel
 
                 {
