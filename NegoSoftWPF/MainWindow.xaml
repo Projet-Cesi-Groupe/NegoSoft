@@ -5,36 +5,52 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NegoSoftWPF"
         mc:Ignorable="d"
-        Title="NegoSud" Height="720" Width="1280"
-        Background="#e0e6b3"
+        Title="NegoSud" Height="720" Width="1500"
+        Background="{StaticResource BackgroundColor}"
         Icon="/WPFViews/images/vin.ico">
-    <Grid Background="#e0e6b3">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <!-- First row is for the Menu (Auto height means it will take only as much space as needed) -->
-            <RowDefinition Height="20" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="80" />
-        </Grid.RowDefinitions>
-        <Menu Grid.Row="0" VerticalAlignment="Top" Height="20" Margin="10,0,10,0" Background="#e0e6b3">
-            <MenuItem Header="Produits" Click="MenuItem_Produits"/>
-            <MenuItem Header="Clients" Click="MenuItem_Clients"/>
-            <MenuItem Header="Fournisseurs" Click="MenuItem_Fournisseurs"/>
-            <MenuItem Header="Commandes Client" Click="MenuItem_CommandesClient"/>
-            <MenuItem Header="Commandes Fournisseur" Click="MenuItem_CommandesFournisseur"/>
-        </Menu>
-        <DataGrid x:Name="dataTab" Grid.Row="1" AutoGenerateColumns="True" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" Background="#692c33" VerticalAlignment="Stretch" Height="auto" Margin="0,0,0,0"  SelectionChanged="dataTab_selectionChange" SelectionMode="Single"/>
-        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
-            <Button Content="Création" FontSize="20" HorizontalAlignment="Center" Margin="20,0,0,0"   Click="Button_ClickCreate" Width="69" Height="30" />
-            <Button Content="Modification" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickUpdate"  Width="69" Height="30"/>
-            <Button Content="Suppression" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickDelete"  Width="69" Height="30"/>
-            <Button Content="Recharger" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickRefresh" Width="69" Height="30"/>
-            <Button x:Name="DetailsButton" Content="Détail" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="ButtonDetails" Width="69" Height="30"/>
-        </StackPanel>
+    <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="4" Padding="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
 
+            <TextBlock Grid.Row="0" Text="Gestion NegoSud" FontSize="28" FontWeight="Bold" 
+                   Foreground="{StaticResource TextColor}" HorizontalAlignment="Center" Margin="0,20,0,10"/>
 
-    </Grid>
+            <Menu Grid.Row="1" VerticalAlignment="Top" Height="30" Background="{StaticResource MenuBackgroundColor}" 
+              Margin="10,0,10,10">
+                <MenuItem Header="Produits" Click="MenuItem_Produits"/>
+                <MenuItem Header="Clients" Click="MenuItem_Clients"/>
+                <MenuItem Header="Fournisseurs" Click="MenuItem_Fournisseurs"/>
+                <MenuItem Header="Commandes Client" Click="MenuItem_CommandesClient"/>
+                <MenuItem Header="Commandes Fournisseur" Click="MenuItem_CommandesFournisseur"/>
+            </Menu>
 
+            <DataGrid x:Name="dataTab" Grid.Row="2" AutoGenerateColumns="True" Background="White" 
+                  VerticalAlignment="Stretch" Margin="10,0,10,20" SelectionChanged="dataTab_selectionChange" 
+                  AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" SelectionMode="Single" 
+                  RowBackground="{StaticResource RowBackgroundColor}" 
+                  AlternatingRowBackground="{StaticResource AlternatingRowBackgroundColor}" 
+                  IsReadOnly="True" HorizontalAlignment="Stretch"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="0,20,0,20">
+                <Button Content="Création" FontSize="16" Width="100" Margin="10,0" 
+                    Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickCreate"/>
+                <Button Content="Modification" FontSize="16" Width="100" Margin="10,0" 
+                    Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickUpdate"/>
+                <Button Content="Suppression" FontSize="16" Width="100" Margin="10,0" 
+                    Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickDelete"/>
+                <Button Content="Recharger" FontSize="16" Width="100" Margin="10,0" 
+                    Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickRefresh"/>
+                <Button Content="Détail" FontSize="16" Width="100" Margin="10,0" 
+                    Style="{StaticResource RoundedButtonStyle}" Click="ButtonDetails" Name="DetailsButton"/>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

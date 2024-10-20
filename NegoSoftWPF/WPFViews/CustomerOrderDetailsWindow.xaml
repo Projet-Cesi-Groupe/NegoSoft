@@ -1,44 +1,48 @@
 ﻿<Window x:Class="NegoSoftWPF.WPFViews.CustomerOrderDetailsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="NegoSud -- Détails Commande Client" Height="770" Width="400" ResizeMode="NoResize"
-        Icon="/WPFViews/images/vin.ico" WindowStartupLocation="CenterScreen">
-    <Grid Margin="10">
-        <StackPanel>
-            <TextBlock Text="Détails de la Commande" FontSize="18" FontWeight="Bold" Margin="0 0 0 20"/>
+        Title="NegoSud -- Détails Commande Client" Height="830" Width="485"
+        Icon="/WPFViews/images/vin.ico" ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundColor}">
+    <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="4" Padding="20">
+        <Grid Margin="10" Background="{StaticResource MenuBackgroundColor}">
+            <StackPanel>
+                <TextBlock Text="Détails de la Commande" FontSize="18" FontWeight="Bold" Margin="20" Foreground="{StaticResource TextColor}"/>
 
-            <Label Content="Client :"/>
-            <TextBlock x:Name="CustomerNameTextBlock" Margin="0 0 0 10"/>
-            <TextBlock x:Name="CustomerEmailTextBlock" Margin="0 0 0 10"/>
-            <TextBlock x:Name="CustomerPhoneTextBlock" Margin="0 0 0 10"/>
+                <Label Content="Client" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="CustomerNameTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
+                <TextBlock x:Name="CustomerEmailTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
+                <TextBlock x:Name="CustomerPhoneTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
 
-            <Label Content="Date de Commande :"/>
-            <TextBlock x:Name="OrderDateTextBlock" Margin="0 0 0 10"/>
+                <Label Content="Date de Commande" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="OrderDateTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
 
-            <Label Content="Adresse de Livraison :"/>
-            <TextBlock x:Name="DeliveryAddressTextBlock" Margin="0 0 0 10"/>
+                <Label Content="Adresse de Livraison" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="DeliveryAddressTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
 
-            <Label Content="Adsresse de Facturation :"/>
-            <TextBlock x:Name="BillingAddressTextBlock" Margin="0 0 0 10"/>
+                <Label Content="Adresse de Facturation" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="BillingAddressTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
 
-            <Label Content="État de la Commande :"/>
-            <TextBlock x:Name="OrderStateTextBlock" Margin="0 0 0 10"/>
+                <Label Content="État de la Commande" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="OrderStateTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
 
-            <Label Content="Total :"/>
-            <TextBlock x:Name="OrderTotalTextBlock" Margin="0 0 0 10"/>
+                <Label Content="Total" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="OrderTotalTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
 
-            <TextBlock Text="Détails des Lignes de Commande" FontSize="16" FontWeight="Bold" Margin="0 10 0 20"/>
+                <TextBlock Text="Lignes de Commande" FontSize="16" FontWeight="Bold" Margin="10 0 0 20" Foreground="{StaticResource TextColor}"/>
 
-            <DataGrid x:Name="OrderDetailsDataGrid" AutoGenerateColumns="False" Margin="0 0 0 20" Height="150">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Produit" Binding="{Binding CodProductId}"/>
-                    <DataGridTextColumn Header="Nom" Binding="{Binding Product.ProName}"/>
-                    <DataGridTextColumn Header="Quantité" Binding="{Binding CodQuantity}"/>
-                    <DataGridTextColumn Header="Prix" Binding="{Binding CodPrice}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                <DataGrid x:Name="OrderDetailsDataGrid" AutoGenerateColumns="False" Margin="10" Height="150">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Produit" Binding="{Binding CodProductId}"/>
+                        <DataGridTextColumn Header="Nom" Binding="{Binding Product.ProName}"/>
+                        <DataGridTextColumn Header="Quantité" Binding="{Binding CodQuantity}"/>
+                        <DataGridTextColumn Header="Prix" Binding="{Binding CodPrice}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
 
-            <Button Content="Fermer" Click="btnClose_Click" Margin="0 10 0 0"/>
-        </StackPanel>
-    </Grid>
+                <Button Content="Fermer" Click="btnClose_Click" Margin="0 10 0 0" Style="{StaticResource RoundedButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

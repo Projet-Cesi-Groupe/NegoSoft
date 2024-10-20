@@ -207,6 +207,8 @@ namespace NegoSoftWPF
             {
                 e.Cancel = true;
             }
+
+            e.Column.Width = new DataGridLength(1, DataGridLengthUnitType.Star);
         }
         private void Button_ClickCreate(object sender, RoutedEventArgs e)
         {

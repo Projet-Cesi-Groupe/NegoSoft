@@ -113,7 +113,7 @@ namespace NegoSoftWPF.WPFViews
             if (openFileDialog.ShowDialog() == true)
             {
                 _selectedPicPath = openFileDialog.FileName;
-                //txtSelectedImage.Text = System.IO.Path.GetFileName(_selectedPicPath);
+                pictureName.Text = System.IO.Path.GetFileName(_selectedPicPath);
             }
         }
 

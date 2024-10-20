@@ -5,16 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NegoSoftWPF.WPFViews"
         mc:Ignorable="d"
-        Title="NegoSud" Height="250" Width="300"
+        Title="NegoSud" Height="250" Width="320"
         Icon="/WPFViews/images/vin.ico"
-        WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Label Content="Veuillez entrer votre mot de passe" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
-        <TextBox x:Name="passBox" TextWrapping="Wrap" Text=""  HorizontalAlignment="Center" VerticalAlignment="Center" Width="160" Margin="0,0,0,0" Grid.RowSpan="2" Height="20"/>
-        <Button Content="Connexion" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Click="Button_Connexion"/>
-    </Grid>
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundColor}">
+    <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="4" Padding="20">
+        <Grid Background="{StaticResource MenuBackgroundColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Content="Veuillez entrer votre mot de passe" HorizontalAlignment="Center" VerticalAlignment="Center" 
+               Foreground="{StaticResource TextColor}" FontSize="16"/>
+            <TextBox x:Name="passBox" TextWrapping="Wrap" Text="" 
+                 HorizontalAlignment="Center" VerticalAlignment="Center" 
+                 Width="160" Margin="0,0,0,0" Grid.RowSpan="2" Height="20"/>
+            <Button Content="Connexion" HorizontalAlignment="Center" Grid.Row="1" 
+                VerticalAlignment="Center" Click="Button_Connexion" 
+                Style="{StaticResource RoundedButtonStyle}" />
+        </Grid>
+    </Border>
 </Window>

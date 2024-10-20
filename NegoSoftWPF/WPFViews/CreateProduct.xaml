@@ -1,66 +1,56 @@
 ﻿<Window x:Class="NegoSoftWPF.WPFViews.CreateProduct"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:NegoSoftWPF.WPFViews"
-        mc:Ignorable="d"
-        Title="NegoSud -- Création Produit" Height="600" Width="300" ResizeMode="NoResize"
-        Icon="/WPFViews/images/vin.ico" WindowStartupLocation="CenterScreen">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Label Grid.Row="0">
-            Nom
-        </Label>
-        <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="22"  Grid.Row="0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
-        <Label Grid.Row="1">
-            Description
-        </Label>
-        <TextBox x:Name="DescriptionBox" HorizontalAlignment="Left" Height="22"  Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
-        <Label Grid.Row="2">
-            Prix
-        </Label>
-        <TextBox x:Name="PriceBox" DataObject.Pasting="NumericTextBox_Pasting" PreviewTextInput="DecimalTextBox_PreviewTextInput" HorizontalAlignment="Left" Height="22"  Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
-        <Label Grid.Row="3">
-            Quantité
-        </Label>
-        <TextBox x:Name="StockBox" DataObject.Pasting="NumericTextBox_Pasting" PreviewTextInput="DecimalTextBox_PreviewTextInput" HorizontalAlignment="Left" Height="22"  Grid.Row="3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
-        <Label Grid.Row="4">
-            Fournisseur
-        </Label>
-        <ComboBox x:Name="suppliersBox" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Top" Width="268" Height ="22" Margin="10,20,0,0"/>
-        <Label Grid.Row="5">
-            Type de produit
-        </Label>
-        <ComboBox x:Name="typeBox" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
-        <Label Grid.Row="6">
-            Prix par boîte
-        </Label>
-        <TextBox x:Name="BoxPriceBox" DataObject.Pasting="NumericTextBox_Pasting" PreviewTextInput="DecimalTextBox_PreviewTextInput" HorizontalAlignment="Left" Height="22"  Grid.Row="6" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268"  Margin="10,20,0,0"/>
-        <Label Grid.Row="7">
-            Année
-        </Label>
-        <TextBox x:Name="YearBox" DataObject.Pasting="NumericTextBox_Pasting" PreviewTextInput="DecimalTextBox_PreviewTextInput" HorizontalAlignment="Left" Height="22"  Grid.Row="7" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
-        <Label Grid.Row="8">
-            Volume d'alcool
-        </Label>
-        <TextBox x:Name="AlcoholVolumeBox" DataObject.Pasting="NumericTextBox_Pasting" PreviewTextInput="DecimalTextBox_PreviewTextInput" HorizontalAlignment="Left" Height="22"  Grid.Row="8" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
-        <Button x:Name="uploadPicButton" Content="Upload product picture" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="9" VerticalAlignment="Top" Click="BrowseImage_Click"/>
-        <Button Content="Create Product" HorizontalAlignment="Center" Grid.Row="9" VerticalAlignment="Top" Margin="0,60,0,0" Width="150" Click="CreateProduct_Click"/>
-    </Grid>
+        Title="NegoSud -- Création Produit" Height="750" Width="361" 
+        Icon="/WPFViews/images/vin.ico" WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundColor}" ResizeMode="NoResize">
+    <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="4" Padding="20">
+        <Grid Margin="10" Background="{StaticResource MenuBackgroundColor}">
+            <StackPanel Height="679" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Label Content="Nom" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="NameBox" Width="268" Height="22" Margin="0,0,0,10"/>
 
+                <Label Content="Description" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="DescriptionBox" Width="268" Height="22" Margin="0,0,0,10"/>
 
+                <Label Content="Prix" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="PriceBox" DataObject.Pasting="NumericTextBox_Pasting" 
+                       PreviewTextInput="DecimalTextBox_PreviewTextInput" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Quantité" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="StockBox" DataObject.Pasting="NumericTextBox_Pasting" 
+                       PreviewTextInput="DecimalTextBox_PreviewTextInput" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Fournisseur" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <ComboBox x:Name="suppliersBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Type de produit" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <ComboBox x:Name="typeBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Prix par boîte" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="BoxPriceBox" DataObject.Pasting="NumericTextBox_Pasting" 
+                       PreviewTextInput="DecimalTextBox_PreviewTextInput" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Année" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="YearBox" DataObject.Pasting="NumericTextBox_Pasting" 
+                       PreviewTextInput="DecimalTextBox_PreviewTextInput" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Volume d'alcool" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="AlcoholVolumeBox" DataObject.Pasting="NumericTextBox_Pasting" 
+                       PreviewTextInput="DecimalTextBox_PreviewTextInput" Width="268" Height="22" Margin="0,0,0,5"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="uploadPicButton" Content="Picture" 
+                    Margin="10,10,0,0" Click="BrowseImage_Click" 
+                    Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Left"/>
+                    <StackPanel Orientation="Vertical" Width="175" Height="55">
+                        <Label Content="Image Chargée" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="pictureName" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+                <Button Content="Create Product" Margin="0,10,0,0" Width="150" 
+                    Click="CreateProduct_Click" 
+                    Style="{StaticResource RoundedButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>
