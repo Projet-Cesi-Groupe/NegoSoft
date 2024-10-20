@@ -22,6 +22,14 @@ namespace NegoAPI.Services.AddressService
                 return null;
             }
 
+            var addressExists = await AddressExists(address);
+
+            // L'adresse existe déjà alors on la retourne
+            if (addressExists != null)
+            {
+                return addressExists;
+            }
+
             var newAddress = new Address
             {
                 AddId = Guid.NewGuid(),
@@ -84,6 +92,18 @@ namespace NegoAPI.Services.AddressService
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public async Task<Address> AddressExists(AddressViewModel address)
+        {
+            return await _context.Addresses.FirstOrDefaultAsync(a => a.AddDeliveryStreet == address.AddDeliveryStreet &&
+                                            a.AddDeliveryCity == address.AddDeliveryCity &&
+                                            a.AddDeliveryZipCode == address.AddDeliveryZipCode &&
+                                            a.AddDeliveryCountry == address.AddDeliveryCountry &&
+                                            a.AddBillingStreet == address.AddBillingStreet &&
+                                            a.AddBillingCity == address.AddBillingCity &&
+                                            a.AddBillingZipCode == address.AddBillingZipCode &&
+                                            a.AddBillingCountry == address.AddBillingCountry);
         }
     }
 }

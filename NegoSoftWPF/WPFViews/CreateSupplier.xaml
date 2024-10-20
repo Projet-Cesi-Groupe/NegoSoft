@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NegoSoftWPF.WPFViews"
         mc:Ignorable="d"
-        Title="CreateProduct" Height="550" Width="300" ResizeMode="NoResize">
+        Title="NegoSud -- Création Fournisseur" Height="550" Width="300" ResizeMode="NoResize"
+        Icon="/WPFViews/images/vin.ico" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

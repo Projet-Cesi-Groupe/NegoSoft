@@ -1,7 +1,8 @@
 ﻿<Window x:Class="NegoSoftWPF.WPFViews.SupplierOrderDetailsWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Détails de la Commande" Height="770" Width="440" ResizeMode="NoResize">
+        Title="NegoSud -- Détails Commande Fournisseur" Height="770" Width="440" ResizeMode="NoResize"
+        Icon="/WPFViews/images/vin.ico" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <StackPanel>
             <TextBlock Text="Détails de la Commande" FontSize="18" FontWeight="Bold" Margin="0 0 0 20"/>

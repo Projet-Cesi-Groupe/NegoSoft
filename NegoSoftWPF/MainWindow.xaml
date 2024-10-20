@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NegoSoftWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280"
-        Background="#e0e6b3">
+        Title="NegoSud" Height="720" Width="1280"
+        Background="#e0e6b3"
+        Icon="/WPFViews/images/vin.ico">
     <Grid Background="#e0e6b3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -24,13 +25,13 @@
             <MenuItem Header="Commandes Client" Click="MenuItem_CommandesClient"/>
             <MenuItem Header="Commandes Fournisseur" Click="MenuItem_CommandesFournisseur"/>
         </Menu>
-        <DataGrid x:Name="dataTab" Grid.Row="1" AutoGenerateColumns="True" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" Background="#692c33" VerticalAlignment="Stretch" Height="auto" Margin="0,0,0,0"  SelectionChanged="dataTab_selectionChange" />
-        <StackPanel Orientation="Horizontal" Grid.Row="2">
-            <Button Content="Create" FontSize="20" HorizontalAlignment="Center" Margin="20,0,0,0"   Click="Button_ClickCreate" Width="69" Height="30" />
-            <Button Content="Update" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickUpdate"  Width="69" Height="30"/>
-            <Button Content="Delete" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickDelete"  Width="69" Height="30"/>
-            <Button Content="Refresh" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickRefresh" Width="69" Height="30"/>
-            <Button x:Name="DetailsButton" Content="Details" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="ButtonDetails" Width="69" Height="30"/>
+        <DataGrid x:Name="dataTab" Grid.Row="1" AutoGenerateColumns="True" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" Background="#692c33" VerticalAlignment="Stretch" Height="auto" Margin="0,0,0,0"  SelectionChanged="dataTab_selectionChange" SelectionMode="Single"/>
+        <StackPanel Orientation="Horizontal" Grid.Row="2" HorizontalAlignment="Center">
+            <Button Content="Création" FontSize="20" HorizontalAlignment="Center" Margin="20,0,0,0"   Click="Button_ClickCreate" Width="69" Height="30" />
+            <Button Content="Modification" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickUpdate"  Width="69" Height="30"/>
+            <Button Content="Suppression" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickDelete"  Width="69" Height="30"/>
+            <Button Content="Recharger" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickRefresh" Width="69" Height="30"/>
+            <Button x:Name="DetailsButton" Content="Détail" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="ButtonDetails" Width="69" Height="30"/>
         </StackPanel>
 
 

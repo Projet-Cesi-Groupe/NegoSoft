@@ -36,6 +36,7 @@ namespace NegoSoftWPF.WPFViews
             InitializeComponent();
             _httpClient = new HttpClient();
             _orderDetails = new List<CustomerOrderDetailsViewModel>();
+            OrderStateTextBox.Text = "En attente";
             LoadCustomersAsync();
             LoadProductsAsync();
         }
@@ -222,11 +223,31 @@ namespace NegoSoftWPF.WPFViews
                 _orderDetails.Add(orderDetail);
                 OrderDetailsDataGrid.ItemsSource = null;
                 OrderDetailsDataGrid.ItemsSource = _orderDetails;
+                updateTotal();
             }
             else
             {
                 MessageBox.Show("Veuillez vérifier les détails du produit.");
             }
+        }
+
+        private void productChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ProductComboBox.SelectedItem is Product selectedProduct)
+            {
+                PriceTextBox.Text = selectedProduct.ProPrice.ToString();
+            }
+        }
+
+
+        private void updateTotal()
+        {
+            float total = 0;
+            foreach (var item in _orderDetails)
+            {
+                total += item.CodPrice * item.CodQuantity;
+            }
+            OrderTotalTextBox.Text = total.ToString();
         }
     }
 }

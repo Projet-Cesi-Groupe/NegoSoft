@@ -10,5 +10,6 @@ namespace NegoAPI.Services.AddressService
         Task<List<Address>> GetAllAddressesAsync();
         Task<Address> GetAddressByIdAsync(Guid id);
         Task<Address> UpdateAddressAsync(Guid id, AddressViewModel address);
+        Task<Address> AddressExists(AddressViewModel address);
     }
 }

@@ -1,7 +1,8 @@
 ﻿<Window x:Class="NegoSoftWPF.WPFViews.EditSupplierWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Modifier Fournisseur" Height="480" Width="305" ResizeMode="NoResize">
+        Title="NegoSud -- Modification Fournisseur" Height="480" Width="305" ResizeMode="NoResize"
+        Icon="/WPFViews/images/vin.ico" WindowStartupLocation="CenterScreen">
     <Grid Margin="10">
         <StackPanel>
             <TextBlock Text="Modifier Fournisseur" FontSize="18" FontWeight="Bold" Margin="0 0 0 20"/>

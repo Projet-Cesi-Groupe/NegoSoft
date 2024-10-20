@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NegoSoftWPF.WPFViews"
         mc:Ignorable="d"
-        Title="adminLogin" Height="250" Width="300">
+        Title="NegoSud" Height="250" Width="300"
+        Icon="/WPFViews/images/vin.ico"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
