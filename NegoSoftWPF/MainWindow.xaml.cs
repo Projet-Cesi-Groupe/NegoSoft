@@ -280,10 +280,10 @@ namespace NegoSoftWPF
             switch (dataGridType)
             {
                 case System.Type t when t == typeof(CustomerOrder) && selectedItem != null:
-                    string selectedOrder = ((CustomerOrder)selectedItem).CoId.ToString();
-                    Guid selectedOrderGuid = Guid.Parse(selectedOrder);
-                    EditCustomerOrderWindow editOrderWindow = new EditCustomerOrderWindow(selectedOrderGuid);
-                    bool? resultOrder = editOrderWindow.ShowDialog();
+                    string selectedCusOrder = ((CustomerOrder)selectedItem).CoId.ToString();
+                    Guid selectedCusOrderGuid = Guid.Parse(selectedCusOrder);
+                    EditCustomerOrderWindow editOrderWindow = new EditCustomerOrderWindow(selectedCusOrderGuid);
+                    bool? resultCusOrder = editOrderWindow.ShowDialog();
                     break;
                 case System.Type t when t == typeof(Customer) && selectedItem != null:
                     string selectedCustomer = ((Customer)selectedItem).CusId.ToString();
@@ -302,6 +302,12 @@ namespace NegoSoftWPF
                     Guid selectedProductGuid = Guid.Parse(selectedProduct);
                     EditProductWindow editProduct = new EditProductWindow(selectedProductGuid);
                     bool? resultProd = editProduct.ShowDialog();
+                    break;
+                case System.Type t when t == typeof(SupplierOrder) && selectedItem != null:
+                    string selectedSupOrder = ((SupplierOrder)selectedItem).SoId.ToString();
+                    Guid selectedSupOrderGuid = Guid.Parse(selectedSupOrder);
+                    EditSupplierOrderWindow editSupOrder = new EditSupplierOrderWindow(selectedSupOrderGuid);
+                    bool? resultSupOrder = editSupOrder.ShowDialog();
                     break;
             }
             refreshDataGrid();

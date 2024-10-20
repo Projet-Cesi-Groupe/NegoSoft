@@ -1,0 +1,40 @@
+﻿<Window x:Class="NegoSoftWPF.WPFViews.EditSupplierOrderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Modifier Commande" Height="770" Width="400" ResizeMode="NoResize">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Modifier Commande" FontSize="18" FontWeight="Bold" Margin="0 0 0 20"/>
+
+            <Label Content="Fournisseur :"/>
+            <ComboBox x:Name="SupplierIdComboBox" Margin="0 0 0 10" SelectionChanged="SupplierIdSelectionChanged"/>
+            <TextBlock x:Name="SupplierNameTextBlock" Margin="0 0 0 10"/>
+            <TextBlock x:Name="SupplierEmailTextBlock" Margin="0 0 0 10"/>
+            <TextBlock x:Name="SupplierPhoneTextBlock" Margin="0 0 0 10"/>
+
+            <Label Content="Adresse :"/>
+            <ComboBox x:Name="AddressIdComboBox" Margin="0 0 0 10" SelectionChanged="AddressIdSelectionChanged"/>
+            <TextBlock x:Name="DeliveryStreetTextBlock" Margin="0 0 0 10"/>
+            <TextBlock x:Name="BillingStreetTextBlock" Margin="0 0 0 10"/>
+
+            <Label Content="État de la commande :"/>
+            <TextBox x:Name="OrderStateTextBox" Margin="0 0 0 10"/>
+
+            <Label Content="Total :"/>
+            <TextBox x:Name="OrderTotalTextBox" Margin="0 0 0 10"/>
+
+            <TextBlock Text="Détails de la commande" FontSize="16" FontWeight="Bold" Margin="0 10 0 20"/>
+
+            <DataGrid x:Name="OrderDetailsDataGrid" AutoGenerateColumns="False" Margin="0 0 0 20" Height="150">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Produit" Binding="{Binding SodProductId}"/>
+                    <DataGridTextColumn Header="Nom" Binding="{Binding Product.ProName}"/>
+                    <DataGridTextColumn Header="Quantité" Binding="{Binding SodQuantity}"/>
+                    <DataGridTextColumn Header="Prix" Binding="{Binding SodPrice}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <Button Content="Enregistrer" Click="btnSave_Click" Margin="0 10 0 0"/>
+        </StackPanel>
+    </Grid>
+</Window>
