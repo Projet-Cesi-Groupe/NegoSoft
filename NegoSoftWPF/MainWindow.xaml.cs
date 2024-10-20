@@ -22,11 +22,13 @@ namespace NegoSoftWPF
     {
         //Attributs
         private bool displayDetailsButton;
+        private bool displayInventoryButton;
         private string apiUrl;
         private System.Type dataGridType;
         private System.Object selectedItem;
         public MainWindow()
         {
+            displayInventoryButton = true;
             InitializeComponent();
             LoadProductsFromApi();
             UpdateButtonVisibility();
@@ -35,24 +37,28 @@ namespace NegoSoftWPF
         {
             LoadProductsFromApi();
             displayDetailsButton = false;
+            displayInventoryButton = true;
             UpdateButtonVisibility();
         }
         private void MenuItem_Clients(object sender, RoutedEventArgs e)
         {
             LoadClientsFromApi();
             displayDetailsButton = false;
+            displayInventoryButton = false;
             UpdateButtonVisibility();
         }
         private void MenuItem_Fournisseurs(object sender, RoutedEventArgs e)
         {
             LoadSupplierFromApi();
             displayDetailsButton = false;
+            displayInventoryButton = false;
             UpdateButtonVisibility();
         }
         private void MenuItem_CommandesClient(object sender, RoutedEventArgs e)
         {
             LoadCustomerOrdersFromApi();
             displayDetailsButton = true;
+            displayInventoryButton = false;
             UpdateButtonVisibility();
         }
 
@@ -60,12 +66,14 @@ namespace NegoSoftWPF
         {
             LoadSupplierOrdersFromApi();
             displayDetailsButton = true;
+            displayInventoryButton = false;
             UpdateButtonVisibility();
         }
         private void MenuItem_FamProd(object sender, RoutedEventArgs e)
         {
             LoadTypesFromApi();
             displayDetailsButton = false;
+            displayInventoryButton = false;
             UpdateButtonVisibility();
         }
 
@@ -282,6 +290,14 @@ namespace NegoSoftWPF
         }
         private void UpdateButtonVisibility()
         {
+            if (displayInventoryButton)
+            {
+                InventoryButton.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                InventoryButton.Visibility = Visibility.Collapsed;
+            }
             if (displayDetailsButton)
             {
                 DetailsButton.Visibility = Visibility.Visible;
@@ -298,26 +314,32 @@ namespace NegoSoftWPF
                 case System.Type t when t == typeof(CustomerOrder):
                     LoadCustomerOrdersFromApi();
                     displayDetailsButton = true;
+                    displayInventoryButton = false;
                     break;
                 case System.Type t when t == typeof(Customer):
                     LoadClientsFromApi();
                     displayDetailsButton = false;
+                    displayInventoryButton = false;
                     break;
                 case System.Type t when t == typeof(Supplier):
                     LoadSupplierFromApi();
                     displayDetailsButton = false;
+                    displayInventoryButton = false;
                     break;
                 case System.Type t when t == typeof(Product):
                     LoadProductsFromApi();
                     displayDetailsButton = false;
+                    displayInventoryButton = true;
                     break;
                 case System.Type t when t == typeof(SupplierOrder):
                     LoadSupplierOrdersFromApi();
                     displayDetailsButton = true;
+                    displayInventoryButton = false;
                     break;
                 case System.Type t when t == typeof(NegoSoftShared.Models.Entities.Type):
                     LoadTypesFromApi();
                     displayDetailsButton = false;
+                    displayInventoryButton = false;
                     break;
             }
             UpdateButtonVisibility();
@@ -474,6 +496,12 @@ namespace NegoSoftWPF
                     bool? resultSupOrder = supplierOrderDetailsWindow.ShowDialog();
                     break;
             }
+        }
+
+        private async void Inventory_Click(object sender, RoutedEventArgs e)
+        {
+            InventoryWindow inventoryWindow = new InventoryWindow();
+            bool? result = inventoryWindow.ShowDialog();
         }
         private async Task DeleteCustomer()
         {

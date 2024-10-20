@@ -51,6 +51,8 @@
                     Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickRefresh"/>
                 <Button Content="Détail" FontSize="16" Width="100" Margin="10,0" 
                     Style="{StaticResource RoundedButtonStyle}" Click="ButtonDetails" Name="DetailsButton"/>
+                <Button Content="Inventaire" FontSize="16" Width="100" Margin="10,0" 
+                    Style="{StaticResource RoundedButtonStyle}" Click="Inventory_Click" Name="InventoryButton"/>
             </StackPanel>
         </Grid>
     </Border>

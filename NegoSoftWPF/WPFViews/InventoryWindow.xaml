@@ -1,0 +1,38 @@
+﻿<Window x:Class="NegoSoftWPF.WPFViews.InventoryWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NegoSud -- Gestion d'Inventaire" Height="600" Width="800" 
+        WindowStartupLocation="CenterScreen"
+        Icon="/WPFViews/images/vin.ico" 
+        Background="{StaticResource BackgroundColor}">
+    <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="4" Padding="20">
+        <Grid Margin="10" Background="{StaticResource MenuBackgroundColor}">
+            <StackPanel>
+                <TextBlock Text="Gestion d'Inventaire" FontSize="20" FontWeight="Bold" 
+                       Margin="0,0,0,20" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"/>
+                <DataGrid x:Name="ProductDataGrid" AutoGenerateColumns="False" Height="400">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID" Binding="{Binding ProId}" Visibility="Collapsed"/>
+                        <DataGridTextColumn Header="Produit" Binding="{Binding ProName}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Quantité Actuelle" Binding="{Binding ProStock}" Width="*" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Nouvelle Quantité" Binding="{Binding NewQuantity}" Width="*" IsReadOnly="False">
+                            <DataGridTextColumn.EditingElementStyle>
+                                <Style TargetType="TextBox">
+                                    <EventSetter Event="PreviewTextInput" Handler="TextBox_PreviewTextInput"/>
+                                </Style>
+                            </DataGridTextColumn.EditingElementStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+                    <Button Content="Régulariser le Stock" Width="150" Height="40" 
+                        Click="RegularizeStockButton_Click" 
+                        Style="{StaticResource RoundedButtonStyle}" />
+                    <Button Content="Annuler" Width="150" Height="40" 
+                        Click="CancelButton_Click"
+                        Style="{StaticResource RoundedButtonStyle}" Margin="10,0,0,0"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
