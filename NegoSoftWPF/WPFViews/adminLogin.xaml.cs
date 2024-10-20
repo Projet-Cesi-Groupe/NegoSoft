@@ -55,14 +55,13 @@ namespace NegoSoftWPF.WPFViews
         {
             if (VerifyPassword(passBox.Text, _password))
             {
-                MessageBox.Show("Correct password");
                 MainWindow mainwindow = new MainWindow();
                 mainwindow.Show();
                 Close();
             }
             else
             {
-                MessageBox.Show("Incorrect password");
+                MessageBox.Show("Mot de passe incorrect");
             }
                   
         }

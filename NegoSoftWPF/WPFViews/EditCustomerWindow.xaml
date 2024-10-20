@@ -5,15 +5,15 @@
     <Grid Margin="10">
         <StackPanel>
             <TextBlock Text="Modifier Client" FontSize="18" FontWeight="Bold" Margin="0 0 0 20"/>
-            <Label Content="Prénom:"/>
+            <Label Content="Prénom :"/>
             <TextBox x:Name="FirstNameTextBox" Margin="0 0 0 10"/>
-            <Label Content="Nom:"/>
+            <Label Content="Nom :"/>
             <TextBox x:Name="LastNameTextBox" Margin="0 0 0 10"/>
-            <Label Content="Email:"/>
+            <Label Content="Email :"/>
             <TextBox x:Name="EmailTextBox" Margin="0 0 0 10"/>
-            <Label Content="Téléphone:"/>
+            <Label Content="Téléphone :"/>
             <TextBox x:Name="PhoneTextBox" Margin="0 0 0 10"/>
-            <Label Content="Utilisateur:"/>
+            <Label Content="Utilisateur :"/>
             <ComboBox x:Name="UserIdComboBox" Margin="0 0 0 10"/>
             <Button Content="Enregistrer" Click="btnSave_Click" Margin="0 10 0 0"/>
         </StackPanel>

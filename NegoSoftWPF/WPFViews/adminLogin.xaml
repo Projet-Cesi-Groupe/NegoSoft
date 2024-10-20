@@ -8,7 +8,6 @@
         Title="adminLogin" Height="250" Width="300">
     <Grid>
         <Grid.RowDefinitions>
-            <!-- First row is for the Menu (Auto height means it will take only as much space as needed) -->
             <RowDefinition Height="*" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>

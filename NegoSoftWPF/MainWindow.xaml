@@ -29,7 +29,7 @@
             <Button Content="Update" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickUpdate"  Width="69" Height="30"/>
             <Button Content="Delete" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickDelete"  Width="69" Height="30"/>
             <Button Content="Refresh" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickRefresh" Width="69" Height="30"/>
-            <Button x:Name="DetailsButton" Content="Details" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="Button_ClickRefresh" Width="69" Height="30"/>
+            <Button x:Name="DetailsButton" Content="Details" FontSize="20" HorizontalAlignment="Left" Margin="20,0,0,0" Grid.Row="1" Click="ButtonDetails" Width="69" Height="30"/>
         </StackPanel>
 
 

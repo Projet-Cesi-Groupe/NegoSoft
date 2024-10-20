@@ -83,6 +83,7 @@ namespace NegoAPI.Services.CustomerOrderDetailsService
         {
             return await _context.CustomerOrderDetails
                 .Where(cod => cod.CodOrderId == id)
+                .Include(cod => cod.Product)
                 .ToListAsync();
         }
     }

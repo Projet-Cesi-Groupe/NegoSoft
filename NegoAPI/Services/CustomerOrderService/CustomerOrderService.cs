@@ -58,7 +58,10 @@ namespace NegoAPI.Services.CustomerOrderService
 
         public async Task<CustomerOrder> GetCustomerOrderByIdAsync(Guid id)
         {
-            return await _context.CustomerOrders.FindAsync(id);
+            return await _context.CustomerOrders
+                .Include(co => co.Customer)
+                .Include(co => co.Address)
+                .FirstOrDefaultAsync(m => m.CoId == id);
         }
 
         public async Task<IEnumerable<CustomerOrder>> GetAllCustomerOrdersAsync()

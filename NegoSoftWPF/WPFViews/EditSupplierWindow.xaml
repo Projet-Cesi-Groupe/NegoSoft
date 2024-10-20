@@ -5,17 +5,17 @@
     <Grid Margin="10">
         <StackPanel>
             <TextBlock Text="Modifier Fournisseur" FontSize="18" FontWeight="Bold" Margin="0 0 0 20"/>
-            <Label Content="Nom:"/>
+            <Label Content="Nom :"/>
             <TextBox x:Name="NameTextBox" Margin="0 0 0 10"/>
-            <Label Content="Email:"/>
+            <Label Content="Email :"/>
             <TextBox x:Name="EmailTextBox" Margin="0 0 0 10"/>
-            <Label Content="Téléphone:"/>
+            <Label Content="Téléphone :"/>
             <TextBox x:Name="PhoneTextBox" Margin="0 0 0 10"/>
-            <Label Content="Adresse:"/>
+            <Label Content="Adresse :"/>
             <ComboBox x:Name="AddressIdComboBox" Margin="0 0 0 10" SelectionChanged="AddressIdSelectionChanged"/>
-            <Label Content="Ville de livraison:"/>
+            <Label Content="Ville de livraison :"/>
             <TextBlock x:Name="DeliveryStreetTextBlock" Margin="0 0 0 10"/>
-            <Label Content="Ville de facturation:"/>
+            <Label Content="Ville de facturation :"/>
             <TextBlock x:Name="BillingStreetTextBlock" Margin="0 0 0 10"/>
             <Button Content="Enregistrer" Click="btnSave_Click" Margin="0 10 0 0"/>
         </StackPanel>

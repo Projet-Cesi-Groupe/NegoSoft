@@ -22,47 +22,47 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Label Grid.Row="0">
-            Name
+            Nom
         </Label>
         <TextBox x:Name="NameBox" HorizontalAlignment="Left" Height="22"  Grid.Row="0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
         <Label Grid.Row="1">
-            Mail
+            Email
         </Label>
         <TextBox x:Name="MailBox" HorizontalAlignment="Left" Height="22"  Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
         <Label Grid.Row="2">
-            Phone
+            Téléphone
         </Label>
         <TextBox x:Name="PhoneBox" HorizontalAlignment="Left" Height="22"  Grid.Row="2" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
         <Label Grid.Row="3">
-            Delivery Street
+            Adresse de livraison
         </Label>
         <TextBox x:Name="DelStreetBox"  HorizontalAlignment="Left" Height="22"  Grid.Row="3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
         <Label Grid.Row="4">
-            Delivery City
+            Ville de livraison
         </Label>
         <TextBox x:Name="DelCityBox" HorizontalAlignment="Left"  Grid.Row="4" VerticalAlignment="Top" Width="268" Height ="22" Margin="10,20,0,0" TextWrapping="Wrap" Text=""/>
         <Label Grid.Row="5">
-            Delivery ZipCode
+            Code Postal de livraison
         </Label>
         <TextBox x:Name="DelZipBox" HorizontalAlignment="Left"  Grid.Row="5" VerticalAlignment="Top" Width="268" Margin="10,20,0,0" TextWrapping="Wrap" Text=""/>
         <Label Grid.Row="6">
-            Delivery Country
+            Pays de livraison
         </Label>
         <TextBox x:Name="DelCountryBox" HorizontalAlignment="Left" Height="22"  Grid.Row="6" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268"  Margin="10,20,0,0"/>
         <Label Grid.Row="7">
-            Billing Street
+            Adresse de facturation
         </Label>
         <TextBox x:Name="BilStreetBox" HorizontalAlignment="Left" Height="22"  Grid.Row="7" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268" Margin="10,20,0,0"/>
         <Label Grid.Row="8">
-            Billing City
+            Ville de facturation
         </Label>
         <TextBox x:Name="BilCityBox" HorizontalAlignment="Left"  Grid.Row="8" VerticalAlignment="Top" Width="268" Height ="22" Margin="10,20,0,0" TextWrapping="Wrap" Text=""/>
         <Label Grid.Row="9">
-            Billing ZipCode
+            Code Postal de facturation
         </Label>
         <TextBox x:Name="BilZipBox" HorizontalAlignment="Left"  Grid.Row="9" VerticalAlignment="Top" Width="268" Margin="10,20,0,0" TextWrapping="Wrap" Text=""/>
         <Label Grid.Row="10">
-            Billing Country
+            Pays de facturation
         </Label>
         <TextBox x:Name="BilCountryBox" HorizontalAlignment="Left" Height="22"  Grid.Row="10" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="268"  Margin="10,20,0,0"/>
         <Button Content="Create Supplier" HorizontalAlignment="Center" Grid.Row="11" VerticalAlignment="Top" Margin="0,30,0,0" Width="150" Click="CreateSupplierButton"/>

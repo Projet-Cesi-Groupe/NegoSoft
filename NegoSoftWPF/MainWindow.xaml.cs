@@ -319,7 +319,10 @@ namespace NegoSoftWPF
         }
         private async void ButtonDetails(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Command details");  
+            string selectedOrder = ((CustomerOrder)selectedItem).CoId.ToString();
+            Guid selectedOrderGuid = Guid.Parse(selectedOrder);
+            CustomerOrderDetailsWindow customerOrderDetailsWindow = new CustomerOrderDetailsWindow(selectedOrderGuid);
+            bool? resultOrder = customerOrderDetailsWindow.ShowDialog();
         }
             private async Task DeleteCustomer()
         {
@@ -424,7 +427,6 @@ namespace NegoSoftWPF
 
         private void dataTab_selectionChange(object sender, SelectionChangedEventArgs e)
         {
-            // Récupère l'élément actuellement sélectionné
             selectedItem = dataTab.SelectedItem;
         }
     }
