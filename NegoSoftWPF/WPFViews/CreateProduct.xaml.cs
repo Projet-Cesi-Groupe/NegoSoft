@@ -109,7 +109,7 @@ namespace NegoSoftWPF.WPFViews
         private void BrowseImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+            openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png, *.webp) | *.jpg; *.jpeg; *.png; *.webp" ;
             if (openFileDialog.ShowDialog() == true)
             {
                 _selectedPicPath = openFileDialog.FileName;

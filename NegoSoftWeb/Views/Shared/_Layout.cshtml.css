@@ -43,24 +43,38 @@ button.accept-policy {
     position: fixed;
     bottom: 0;
     width: 100%;
+    height: 5vh;
     white-space: nowrap;
     line-height: 60px;
 }
 
 .container-fluid {
     background-color: #641c3d;
+    height: 8vh;
+}
+
+header {
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .navbar .navbar-brand {
-    color: #f8f4ec; /* Change la couleur du texte de la marque */
+    color: #f8f4ec; 
 }
 
-    .navbar .navbar-brand:hover {
-        color: #ffffff; /* Change la couleur au survol si souhaité */
-    }
+.btn-outline-success {
+    color: #f8f4ec;
+    border-color: #f8f4ec;
+}
 
+.btn-outline-success:hover {
+    color: #641c3d;
+    background-color: #f8f4ec;
+    border-color: #f8f4ec;
+}
 
 form.customForm {
     display: flex
 }
+
 

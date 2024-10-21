@@ -68,7 +68,6 @@
                             <img src="https://localhost:7101/uploads/@product.ProPictureName" class="card-img-top img-responsive" alt="@product.ProName" />
                             <div class="card-body">
                                 <h5 class="card-title">@product.ProName</h5>
-                                <p class="card-text">@product.ProDescription</p>
                                 <p class="card-text">Type: @product.Type.TypLibelle - Stock: @product.ProStock</p>
                                 <div class="price">@product.ProPrice €</div>
                                 <a href="@Url.Action("Details", "Product", new { id = @product.ProId })" class="btn btn-primary">Acheter</a>

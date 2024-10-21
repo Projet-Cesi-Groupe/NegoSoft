@@ -10,24 +10,28 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: #f8f4ec; /* Couleur de fond beige */
+    background-color: #f8f4ec;
 }
 
 .container {
-    padding-bottom: 80px; /* Ajustez ceci en fonction de la hauteur de votre footer */
+    padding-bottom: 80px;
 }
 
 .row {
-    display: block; /* Désactive flexbox */
+    display: block;
+}
+
+.row.profile {
+    display: flex;
 }
 
 .sidebar {
     width: 300px;
-    float: left; /* Utilise float pour positionner la barre latérale */
+    float: left;
 }
 
 .content {
-    margin-left: 320px; /* Marge gauche pour compenser la largeur de la barre latérale */
+    margin-left: 320px;
 }
 
 .product-grid {
@@ -37,14 +41,34 @@ body {
 
 .product-card {
     display: inline-block;
-    width: 31%; /* Assure 3 produits par ligne, ajuste selon les besoins */
-    margin: 0 1%; /* Espace entre les produits */
-    vertical-align: top; /* Assure l'alignement des cartes */
+    width: 31%;
+    margin: 0 1%;
+    vertical-align: top;
     margin-bottom: 20px;
 }
 
+.custom-page-nav .nav-link {
+    background-color: transparent;
+    border: solid;
+    border-color: #641c3d;
+    color: black; 
+    border-radius: 5px;
+}
+
+    .custom-page-nav .nav-link:hover {
+        background-color: #641c3d;
+        color: white;
+    }
+
+    .custom-page-nav .nav-link.active {
+        background-color: #641c3d;
+        color: white;
+    }
+
+
+
 .filter-form {
-    background-color: #e5d3c2; /* Beige clair pour le formulaire de filtre */
+    background-color: #e5d3c2;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -52,7 +76,7 @@ body {
 }
 
     .filter-form h5 {
-        color: #641c3d; /* Bordeaux pour les titres des filtres */
+        color: #641c3d;
     }
 
 .form-control {
@@ -62,7 +86,7 @@ body {
 
 .card {
     border-radius: 20px;
-    background-color: #fff; /* Fond blanc pour les cartes */
+    background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
     height: 100%;
@@ -84,30 +108,32 @@ body {
 .price {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #641c3d; /* Bordeaux pour les prix */
+    color: #641c3d;
     margin-bottom: 15px;
 }
 
 .btn-primary {
     border-radius: 50px;
     width: 100%;
-    background-color: #641c3d; /* Bordeaux pour le bouton d'achat */
+    background-color: #641c3d;
     border: none;
     padding: 10px 0;
     color: white;
     font-weight: bold;
     transition: background-color 0.3s;
+    text-decoration: none;
+    height: auto;
 }
 
     .btn-primary:hover {
-        background-color: #4a1527; /* Couleur de survol du bouton */
+        background-color: #4a1527;
     }
 
 .product-page .card-img-top {
     border-radius: 15px;
     width: 100%;
     height: auto;
-    max-height: 300px; /* Hauteur ajustée pour les images de produits */
+    max-height: 300px;
     object-fit: contain;
 }
 
@@ -126,6 +152,122 @@ body {
     color: #f8f4ec;
 }
 
-.
+.cart-icon {
+    font-size: 1.5rem;
+    fill: white;
+}
+
+.custom-input-bg {
+    background-color: #f8f4ec;
+}
+
+.col-md-6 {
+    float: left; 
+    width: 50%; 
+    box-sizing: border-box; 
+    padding: 15px;
+}
+
+.img-fluid {
+    max-width: 100%; 
+    height: auto; 
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #641c3d;
+    margin-bottom: 15px;
+}
+
+.image-frame {
+    border: 5px solid #641c3d; 
+    border-radius: 15px;
+    padding: 10px; 
+    background-color: #fff;
+    text-align: center;
+}
+
+
+.cart-page {
+    background-color: #f8f4ec;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+    .cart-page h1 {
+        color: #641c3d;
+        margin-bottom: 30px;
+    }
+
+.table {
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+    .table th {
+        background-color: #641c3d;
+        color: white;
+    }
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}
+
+.btn-danger {
+    border-radius: 50px; 
+    background-color: #c82333; 
+    border: none; 
+    color: white; 
+    transition: background-color 0.3s; 
+}
+
+    .btn-danger:hover {
+        background-color: #bd2130;
+    }
+
+.btn-primary {
+    border-radius: 50px;
+    background-color: #641c3d;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-weight: bold; 
+    transition: background-color 0.3s; 
+}
+
+    .btn-primary:hover {
+        background-color: #4a1527;
+    }
+
+.btn-primary.btn-infoperso {
+    margin-top: 20px;
+    width: auto;
+}
+
+.payment-card {
+    text-align: center;
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.payment-title {
+    color: #641c3d;
+    margin-bottom: 20px;
+}
+
+.payment-message {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+}
+
+.btn-primary.btn-history {
+    width: auto;
+}
 
 

@@ -4,48 +4,46 @@
     ViewData["Title"] = "Address Information";
 }
 
-<h2>Address Information</h2>
-
 <form asp-action="OrderAddress" method="post" id="address-payment-form">
-    <h3>Delivery Address</h3>
+    <h3>Informations de Livraison</h3>
 
     <div class="form-group">
-        <label asp-for="AddDeliveryStreet"></label>
+        <label asp-for="AddDeliveryStreet">Adresse</label>
         <input asp-for="AddDeliveryStreet" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="AddDeliveryCity"></label>
+        <label asp-for="AddDeliveryCity">Ville</label>
         <input asp-for="AddDeliveryCity" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="AddDeliveryZipCode"></label>
+        <label asp-for="AddDeliveryZipCode">Code Postal</label>
         <input asp-for="AddDeliveryZipCode" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="AddDeliveryCountry"></label>
+        <label asp-for="AddDeliveryCountry">Pays</label>
         <input asp-for="AddDeliveryCountry" class="form-control" />
     </div>
 
-    <h3>Billing Address</h3>
+    <h3>Informations de Facturation</h3>
 
     <div class="form-group">
-        <label asp-for="AddBillingStreet"></label>
+        <label asp-for="AddBillingStreet">Adresse</label>
         <input asp-for="AddBillingStreet" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="AddBillingCity"></label>
+        <label asp-for="AddBillingCity">Ville</label>
         <input asp-for="AddBillingCity" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="AddBillingZipCode"></label>
+        <label asp-for="AddBillingZipCode">Code Postal</label>
         <input asp-for="AddBillingZipCode" class="form-control" />
     </div>
     <div class="form-group">
-        <label asp-for="AddBillingCountry"></label>
+        <label asp-for="AddBillingCountry">Pays</label>
         <input asp-for="AddBillingCountry" class="form-control" />
     </div>
 
-    <button type="submit" class="btn btn-primary">Save Address and Proceed to Payment</button>
+    <button type="submit" class="btn btn-primary btn-infoperso">Save Address and Proceed to Payment</button>
 </form>
 
 <script src="https://js.stripe.com/v3/"></script>
