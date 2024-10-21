@@ -37,75 +37,31 @@ namespace NegoSoftWeb.Services.ProductService
                 .FirstOrDefaultAsync(m => m.ProId == id);
         }
 
-        public async Task<Product> CreateProductAsync(Product product)
-        {
-            product.ProId = Guid.NewGuid();
-            product.ProPrice = (float)Math.Round(product.ProPrice, 2);
-            _context.Add(product);
-            await _context.SaveChangesAsync();
-            return product;
-        }
-
         public async Task<Product> UpdateProductAsync(Product product)
         {
-            Console.WriteLine(product.ProStock);
             _context.Update(product);
             await _context.SaveChangesAsync();
             return product;
         }
-
-        public async Task<Product> DeleteProductAsync(Guid id)
-        {
-            var product = await _context.Products.FindAsync(id);
-            if (product != null)
-            {
-                _context.Products.Remove(product);
-                await _context.SaveChangesAsync();
-            }
-            return product;
-        }
-
         public async Task<bool> ProductExistsAsync(Guid id)
         {
             return await _context.Products.AnyAsync(e => e.ProId == id);
         }
 
-        public async Task<String> UploadFile(ProductViewModel product)
+        public async Task<IEnumerable<int>> GetYearsAsync()
         {
-            if (product.ProImageFile != null)
-            {
-                // Get the path to the wwwroot folder
-                string uploadFolder = Path.Combine(_webHostEnvironment.WebRootPath, "uploads");
-                Console.WriteLine(uploadFolder);
-
-                // Create the folder if it doesn't exist
-                if (!Directory.Exists(uploadFolder))
-                {
-                    Directory.CreateDirectory(uploadFolder);
-                }
-
-                // Generate a unique file name
-                string uniqueFileName = Guid.NewGuid().ToString() + "_" + product.ProImageFile.FileName;
-
-                // Combine the folder path and the file name
-                string filePath = Path.Combine(uploadFolder, uniqueFileName);
-
-                // Sauvegarde le fichier sur le serveur
-                using (var fileStream = new FileStream(filePath, FileMode.Create))
-                {
-                    await product.ProImageFile.CopyToAsync(fileStream);
-                }
-
-                product.ProPictureName = uniqueFileName;
-
-            }
-            return product.ProPictureName;
-
+            return await _context.Products
+                .Select(p => p.ProYear)
+                .Distinct()
+                .Where(y => y != 0)
+                .ToListAsync();
         }
 
-        public async Task<ProductSearchViewModel> SearchAsync(string searchString, Guid? typeId, Guid? supplierId, Guid? alcoholProductId, SortOrder sortOrder)
+        public async Task<ProductSearchViewModel> SearchAsync(string searchString, Guid? typeId, Guid? supplierId, int? productYear, SortOrder sortOrder)
         {
             var products = await GetAllProductsAsync();
+
+            products = products.Where(p => p.ProIsActive).ToList();
 
             //controle de la recherche
             if (!String.IsNullOrEmpty(searchString))
@@ -127,45 +83,9 @@ namespace NegoSoftWeb.Services.ProductService
 
 
             //on filtre par année si une année est selectionnée
-            if (alcoholProductId.HasValue)
+            if (productYear.HasValue)
             {
-                if (supplierId.HasValue && typeId.HasValue)
-                {
-                    products = (from p in _context.Products
-                                join ap in _context.AlcoholProducts
-                                on p.ProId equals ap.ProTypeId
-                                where ap.ApId == alcoholProductId.Value
-                                && p.ProSupplierId == supplierId.Value
-                                && p.ProTypeId == typeId.Value
-                                select p).ToList();
-                }
-
-                else if (supplierId.HasValue)
-                {
-                    products = (from p in _context.Products
-                                join ap in _context.AlcoholProducts
-                                on p.ProId equals ap.ProTypeId
-                                where ap.ApId == alcoholProductId.Value
-                                && p.ProSupplierId == supplierId.Value
-                                select p).ToList();
-                }
-                else if (typeId.HasValue) 
-                {
-                    products = (from p in _context.Products
-                                join ap in _context.AlcoholProducts
-                                on p.ProId equals ap.ProTypeId
-                                where ap.ApId == alcoholProductId.Value
-                                && p.ProTypeId == typeId.Value
-                                select p).ToList();
-                }
-                else
-                {
-                    products = (from p in _context.Products
-                                join ap in _context.AlcoholProducts
-                                on p.ProId equals ap.ProTypeId
-                                where ap.ApId == alcoholProductId.Value
-                                select p).ToList();
-                }
+                products = products.Where(p => p.ProYear == productYear.Value).ToList();
             }
 
             //on trie les produits
@@ -193,8 +113,8 @@ namespace NegoSoftWeb.Services.ProductService
                 SelectedTypeId = typeId,
                 ProductSuppliers = await _context.Suppliers.ToListAsync(),
                 SelectedSupplierId = supplierId,
-                AlcoholProducts = await _context.AlcoholProducts.ToListAsync(),
-                SelectedAlcoholProductId = alcoholProductId,
+                ProductYears = await GetYearsAsync(),
+                SelectedYear = productYear ?? 0,
                 SelectedSortOrder = sortOrder
             };
 

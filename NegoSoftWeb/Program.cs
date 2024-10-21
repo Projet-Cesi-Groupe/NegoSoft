@@ -18,7 +18,6 @@ using NegoSoftWeb.Models.Entities;
 Env.Load();
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
 builder.Services.AddDbContext<NegoSoftContext>(options =>
     options.UseSqlServer(connectionString));

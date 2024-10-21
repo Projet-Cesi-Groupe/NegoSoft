@@ -4,6 +4,8 @@
 
 Pour configurer l'application, vous devez créer un fichier `.env` à la racine du projet et y ajouter les variables d'environnement nécessaires. Suivez les étapes ci-dessous pour configurer correctement votre environnement :
 
+Il est nécessaire de créer un fichier .env dans NegoSoftAPI et NegoSoftWeb.
+
 ## Étapes à suivre
 
 1. **Créer le fichier `.env`**
@@ -13,5 +15,31 @@ Pour configurer l'application, vous devez créer un fichier `.env` à la racine 
    ```bash
    touch .env
    
-# Exemple de variables d'environnement
-DB_CONNECTION_STRING= the connection string 
+# .env a créer
+DB_CONNECTION_STRING="ConnexionString"
+
+2. **Création de la base de données**
+
+Pour créer la base de données, vous devez exécuter les migrations.
+
+Utilisez la commande suivante dans le terminal :
+
+```bash
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+```
+
+Si vous avez installé les outils Entity Framework Core, vous pouvez également
+utiliser le gestionnaire de packages pour ajouter une migration :
+
+```bash
+Add-Migration InitialCreate
+```
+Ensuite, appliquez les migrations en utilisant :
+
+```bash
+Update-Database
+```
+
+Assurez-vous d'avoir installé les outils Entity Framework Core et
+que la chaîne de connexion est correcte avant d'exécuter les commandes.

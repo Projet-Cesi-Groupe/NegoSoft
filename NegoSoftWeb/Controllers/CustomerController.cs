@@ -45,22 +45,5 @@ namespace NegoSoftWeb.Controllers
             }
             return View(customer);
         }
-
-        // POST: Customers/SetDefaultAdress/{CusId}
-
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SetDefaultAdress(Guid CusId, Guid AddId)
-        {
-            var customer = await _customerService.GetCustomerByIdAsync(CusId);
-            if (customer == null)
-            {
-                return NotFound();
-            }
-            customer.CusDefaultAddressId = AddId;
-            await _customerService.UpdateCustomerAsync(customer);
-            return RedirectToAction("Index", "Customer");
-        }
     }
 }

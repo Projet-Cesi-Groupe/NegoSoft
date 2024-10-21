@@ -1,0 +1,50 @@
+﻿<Window x:Class="NegoSoftWPF.WPFViews.SupplierOrderDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NegoSud -- Détails Commande Fournisseur" Height="830" Width="485" ResizeMode="NoResize"
+        Icon="/WPFViews/images/vin.ico" 
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundColor}">
+    <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="4" Padding="20">
+        <Grid Margin="10" Background="{StaticResource MenuBackgroundColor}">
+            <StackPanel>
+                <TextBlock Text="Détails de la Commande" FontSize="18" FontWeight="Bold" Margin="20" Foreground="{StaticResource TextColor}"/>
+
+                <Label Content="Fournisseur" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}"  FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="SupplierNameTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
+                <TextBlock x:Name="SupplierEmailTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
+                <TextBlock x:Name="SupplierPhoneTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
+
+                <Label Content="Date de Commande" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="OrderDateTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
+
+                <Label Content="Adresse de Livraison" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="DeliveryAddressTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
+
+                <Label Content="Adresse de Facturation" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="BillingAddressTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
+
+                <Label Content="État de la Commande" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="OrderStateTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
+
+                <Label Content="Total" HorizontalAlignment="Center" Foreground="{StaticResource TextColor}" FontWeight="Bold" FontSize="15"/>
+                <TextBlock x:Name="OrderTotalTextBlock" Margin="10 0 0 10" Foreground="{StaticResource TextColor}"/>
+
+                <TextBlock Text="Lignes de Commande" FontSize="16" FontWeight="Bold" Margin="10 0 0 20" Foreground="{StaticResource TextColor}"/>
+
+                <DataGrid x:Name="OrderDetailsDataGrid" AutoGenerateColumns="False" Margin="10" Height="150" CanUserAddRows="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Produit" Binding="{Binding SodProductId}" Width="*"/>
+                        <DataGridTextColumn Header="Nom" Binding="{Binding Product.ProName}" Width="*"/>
+                        <DataGridTextColumn Header="Quantité" Binding="{Binding SodQuantity}" Width="*"/>
+                        <DataGridTextColumn Header="Prix" Binding="{Binding SodPrice}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <Button x:Name="btnClose" Content="Fermer" Click="btnClose_Click" 
+                    Width="100" HorizontalAlignment="Center" Margin="20,10,0,0" 
+                    Style="{StaticResource RoundedButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+    </Border>   
+</Window>

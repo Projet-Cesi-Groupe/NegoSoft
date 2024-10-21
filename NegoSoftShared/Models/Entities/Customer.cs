@@ -32,17 +32,11 @@ namespace NegoSoftShared.Models.Entities
         [Column("cus_phone")]
         public string CusPhone { get; set; }
         
-        [ForeignKey("Address")]
-        [Column("cus_default_address_id")]
-        public Guid? CusDefaultAddressId { get; set; }
-
         [Required]
         [Column("cus_user_id")]
         public string CusUserId { get; set; }
 
         // Propriétés de navigation de la classe permettant de naviguer entre les différentes classes (voir cours sur les relations entre les classes)
-
-        public Address DefaultAddress { get; set; }
         public ICollection<CustomerOrder> CustomerOrders { get; set; }
     }
 

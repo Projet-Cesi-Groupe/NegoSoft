@@ -5,13 +5,13 @@ VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NegoSoftWeb", "NegoSoftWeb\NegoSoftWeb.csproj", "{709D34D2-B0A6-47D9-8BBA-8226253D98CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NegoSoftWine", "NegoSoftWine\NegoSoftWine.csproj", "{13F05F97-9A50-45E3-84F0-4044E92FCBB5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NegoAPI", "NegoAPI\NegoAPI.csproj", "{C7B17876-BA72-4959-896B-43323AC453D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NegoAPI", "NegoAPI\NegoAPI.csproj", "{C7B17876-BA72-4959-896B-43323AC453D4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Éléments de solution", "Éléments de solution", "{77A43B1A-E4F2-4DA2-803B-113D100943FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NegoSoftShared", "NegoSoftShared\NegoSoftShared.csproj", "{6B4DCE62-B432-4441-80AC-3A159FC2D576}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NegoSoftShared", "NegoSoftShared\NegoSoftShared.csproj", "{6B4DCE62-B432-4441-80AC-3A159FC2D576}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NegoSoftWPF", "NegoSoftWPF\NegoSoftWPF.csproj", "{16D8C85E-26CA-40A5-8CEF-F870AB2E6407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,6 @@ Global
 		{709D34D2-B0A6-47D9-8BBA-8226253D98CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{709D34D2-B0A6-47D9-8BBA-8226253D98CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{709D34D2-B0A6-47D9-8BBA-8226253D98CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{13F05F97-9A50-45E3-84F0-4044E92FCBB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{13F05F97-9A50-45E3-84F0-4044E92FCBB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{13F05F97-9A50-45E3-84F0-4044E92FCBB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{13F05F97-9A50-45E3-84F0-4044E92FCBB5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C7B17876-BA72-4959-896B-43323AC453D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C7B17876-BA72-4959-896B-43323AC453D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C7B17876-BA72-4959-896B-43323AC453D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,6 +31,10 @@ Global
 		{6B4DCE62-B432-4441-80AC-3A159FC2D576}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B4DCE62-B432-4441-80AC-3A159FC2D576}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B4DCE62-B432-4441-80AC-3A159FC2D576}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16D8C85E-26CA-40A5-8CEF-F870AB2E6407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16D8C85E-26CA-40A5-8CEF-F870AB2E6407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16D8C85E-26CA-40A5-8CEF-F870AB2E6407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16D8C85E-26CA-40A5-8CEF-F870AB2E6407}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

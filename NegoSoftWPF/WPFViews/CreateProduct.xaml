@@ -1,0 +1,56 @@
+﻿<Window x:Class="NegoSoftWPF.WPFViews.CreateProduct"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="NegoSud -- Création Produit" Height="800" Width="361" 
+        Icon="/WPFViews/images/vin.ico" WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundColor}" ResizeMode="NoResize">
+    <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="4" Padding="20">
+        <Grid Margin="10" Background="{StaticResource MenuBackgroundColor}">
+            <StackPanel Height="679" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <Label Content="Nom" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="NameBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Description" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="DescriptionBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Prix" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="PriceBox" DataObject.Pasting="NumericTextBox_Pasting" 
+                       PreviewTextInput="DecimalTextBox_PreviewTextInput" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Quantité" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="StockBox" DataObject.Pasting="NumericTextBox_Pasting" 
+                       PreviewTextInput="DecimalTextBox_PreviewTextInput" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Fournisseur" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <ComboBox x:Name="suppliersBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Type de produit" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <ComboBox x:Name="typeBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Prix par boîte" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="BoxPriceBox" DataObject.Pasting="NumericTextBox_Pasting" 
+                       PreviewTextInput="DecimalTextBox_PreviewTextInput" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Année" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="YearBox" DataObject.Pasting="NumericTextBox_Pasting" 
+                       PreviewTextInput="DecimalTextBox_PreviewTextInput" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Volume d'alcool" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="AlcoholVolumeBox" DataObject.Pasting="NumericTextBox_Pasting" 
+                       PreviewTextInput="DecimalTextBox_PreviewTextInput" Width="268" Height="22" Margin="0,0,0,5"/>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="uploadPicButton" Content="Picture" 
+                    Margin="10,10,0,0" Click="BrowseImage_Click" 
+                    Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Left"/>
+                    <StackPanel Orientation="Vertical" Width="175" Height="55">
+                        <Label Content="Image Chargée" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="pictureName" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </StackPanel>
+                <Button Content="Create Product" Margin="0,10,0,0" Width="150" 
+                    Click="CreateProduct_Click" 
+                    Style="{StaticResource RoundedButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

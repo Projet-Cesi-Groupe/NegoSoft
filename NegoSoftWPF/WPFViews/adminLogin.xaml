@@ -1,0 +1,27 @@
+﻿<Window x:Class="NegoSoftWPF.WPFViews.adminLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NegoSoftWPF.WPFViews"
+        mc:Ignorable="d" KeyDown="Window_KeyDown"
+        Title="NegoSud" Height="250" Width="320" 
+        Icon="/WPFViews/images/vin.ico"
+        WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundColor}">
+    <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="4" Padding="20">
+        <Grid Background="{StaticResource MenuBackgroundColor}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Label Content="Veuillez entrer votre mot de passe" HorizontalAlignment="Center" VerticalAlignment="Center" 
+               Foreground="{StaticResource TextColor}" FontSize="16"/>
+            <PasswordBox x:Name="passBox" HorizontalAlignment="Center" VerticalAlignment="Center" 
+              Width="160" Margin="0,0,0,0" Grid.RowSpan="2" Height="20"/>
+            <Button Content="Connexion" HorizontalAlignment="Center" Grid.Row="1" 
+                VerticalAlignment="Center" Click="Button_Connexion" 
+                Style="{StaticResource RoundedButtonStyle}" />
+        </Grid>
+    </Border>
+</Window>

@@ -1,0 +1,43 @@
+﻿<Application x:Class="NegoSoftWPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NegoSoftWPF"
+             StartupUri="WPFViews/adminLogin.xaml">
+    <Application.Resources>
+        <SolidColorBrush x:Key="BackgroundColor" Color="#f5f5f5"/>
+        <SolidColorBrush x:Key="MenuBackgroundColor" Color="#fefee0"/>
+        <SolidColorBrush x:Key="RowBackgroundColor" Color="#f0f0f0"/>
+        <SolidColorBrush x:Key="AlternatingRowBackgroundColor" Color="#fefee0"/>
+        <SolidColorBrush x:Key="TextColor" Color="#4a4a4a"/>
+        <SolidColorBrush x:Key="BorderColor" Color="#692c33"/>
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#4a4a4a"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="BorderBrush" Value="#4a4a4a"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" 
+                        BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#692c33"/>
+                                <Setter Property="Foreground" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>

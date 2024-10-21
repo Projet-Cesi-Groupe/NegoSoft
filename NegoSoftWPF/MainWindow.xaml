@@ -1,0 +1,59 @@
+﻿<Window x:Class="NegoSoftWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NegoSoftWPF"
+        mc:Ignorable="d"
+        Title="NegoSud" Height="720" Width="1500"
+        Background="{StaticResource BackgroundColor}"
+        Icon="/WPFViews/images/vin.ico">
+    <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="4" Padding="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Gestion NegoSud" FontSize="28" FontWeight="Bold" 
+                   Foreground="{StaticResource TextColor}" HorizontalAlignment="Center" Margin="0,20,0,10"/>
+
+            <Menu Grid.Row="1" VerticalAlignment="Top" Height="30" Background="{StaticResource MenuBackgroundColor}" 
+              Margin="10,0,10,10">
+                <MenuItem Header="Produits" Click="MenuItem_Produits"/>
+                <MenuItem Header="Familles Produits" Click="MenuItem_FamProd"/>
+                <MenuItem Header="Clients" Click="MenuItem_Clients"/>
+                <MenuItem Header="Commandes Client" Click="MenuItem_CommandesClient"/>
+                <MenuItem Header="Fournisseurs" Click="MenuItem_Fournisseurs"/>
+                <MenuItem Header="Commandes Fournisseur" Click="MenuItem_CommandesFournisseur"/>
+            </Menu>
+
+            <DataGrid x:Name="dataTab" Grid.Row="2" AutoGenerateColumns="True" Background="White" 
+                  VerticalAlignment="Stretch" Margin="10,0,10,20" SelectionChanged="dataTab_selectionChange" 
+                  AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" SelectionMode="Single" 
+                  RowBackground="{StaticResource RowBackgroundColor}" 
+                  AlternatingRowBackground="{StaticResource AlternatingRowBackgroundColor}" 
+                  IsReadOnly="True" HorizontalAlignment="Stretch"/>
+
+            <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="0,20,0,20">
+                <Button Content="Création" FontSize="16" Width="120" Margin="10,0" 
+                    Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickCreate"/>
+                <Button Content="Modification" FontSize="16" Width="120" Margin="10,0"
+                    Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickUpdate"/>
+                <Button Content="Suppression" FontSize="16" Width="120" Margin="10,0" 
+                    Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickDelete"/>
+                <Button Content="Recharger" FontSize="16" Width="120" Margin="10,0" 
+                    Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickRefresh"/>
+                <Button Content="Détail" FontSize="16" Width="120" Margin="10,0" 
+                    Style="{StaticResource RoundedButtonStyle}" Click="ButtonDetails" Name="DetailsButton"/>
+                <Button Content="Inventaire" FontSize="16" Width="120" Margin="10,0" 
+                    Style="{StaticResource RoundedButtonStyle}" Click="Inventory_Click" Name="InventoryButton"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

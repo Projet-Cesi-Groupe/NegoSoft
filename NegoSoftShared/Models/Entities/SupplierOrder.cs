@@ -31,7 +31,7 @@ namespace NegoSoftShared.Models.Entities
 
         [Required]
         [Column("so_state")]
-        public string SoState { get; set; } = "En attente";
+        public bool SoState { get; set; } = false;
 
         [Required]
         [Column("so_date")]

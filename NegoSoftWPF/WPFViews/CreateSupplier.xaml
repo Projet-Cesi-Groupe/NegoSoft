@@ -1,0 +1,56 @@
+﻿<Window x:Class="NegoSoftWPF.WPFViews.CreateSupplier"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NegoSoftWPF.WPFViews"
+        mc:Ignorable="d"
+        Title="NegoSud -- Création Fournisseur" Height="650" Width="675" ResizeMode="NoResize"
+        Icon="/WPFViews/images/vin.ico" WindowStartupLocation="CenterScreen"
+        Background="{StaticResource BackgroundColor}">
+    <Border BorderBrush="{StaticResource BorderColor}" BorderThickness="4" Padding="20">
+        <Grid Margin="10" Background="{StaticResource MenuBackgroundColor}">
+            <StackPanel>
+                <Label Content="Nom" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="NameBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Email" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="MailBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                <Label Content="Téléphone" Margin="0,0,0,5" Foreground="{StaticResource TextColor}" HorizontalAlignment="Center"/>
+                <TextBox x:Name="PhoneBox" Width="268" Height="22" Margin="0,0,0,10"/>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <Label Content="Adresse de livraison" Margin="0,0,0,5" Foreground="{StaticResource TextColor}"/>
+                        <TextBox x:Name="DelStreetBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                        <Label Content="Ville de livraison" Margin="0,0,0,5" Foreground="{StaticResource TextColor}"/>
+                        <TextBox x:Name="DelCityBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                        <Label Content="Code Postal de livraison" Margin="0,0,0,5" Foreground="{StaticResource TextColor}"/>
+                        <TextBox x:Name="DelZipBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                        <Label Content="Pays de livraison" Margin="0,0,0,5" Foreground="{StaticResource TextColor}"/>
+                        <TextBox x:Name="DelCountryBox" Width="268" Height="22" Margin="0,0,0,10"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <Label Content="Adresse de facturation" Margin="0,0,0,5" Foreground="{StaticResource TextColor}"/>
+                        <TextBox x:Name="BilStreetBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                        <Label Content="Ville de facturation" Margin="0,0,0,5" Foreground="{StaticResource TextColor}"/>
+                        <TextBox x:Name="BilCityBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                        <Label Content="Code Postal de facturation" Margin="0,0,0,5" Foreground="{StaticResource TextColor}"/>
+                        <TextBox x:Name="BilZipBox" Width="268" Height="22" Margin="0,0,0,10"/>
+
+                        <Label Content="Pays de facturation" Margin="0,0,0,5" Foreground="{StaticResource TextColor}"/>
+                        <TextBox x:Name="BilCountryBox" Width="268" Height="22" Margin="0,0,0,10"/>
+                    </StackPanel>
+                </StackPanel>
+                <Button Content="Créer Fournisseur" Width="150" 
+                    Click="CreateSupplierButton" 
+                    Style="{StaticResource RoundedButtonStyle}"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>

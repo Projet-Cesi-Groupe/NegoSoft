@@ -51,8 +51,7 @@ namespace NegoSoftShared.Models.Entities
         public string AddBillingCountry { get; set; }
 
         // Propriétés de navigation de la classe permettant de naviguer entre les différentes classes (voir cours sur les relations entre les classes)
-        public Customer Customer { get; set; }
-        public Supplier Supplier { get; set; }
+        public ICollection<Supplier> Suppliers { get; set; }
         public ICollection<CustomerOrder> CustomerOrders { get; set; }
         public ICollection<SupplierOrder> SupplierOrders { get; set; }
     }

@@ -49,11 +49,22 @@ namespace NegoSoftShared.Models.Entities
         [Column("pro_picture_name")]
         public string ProPictureName { get; set; }
 
+        [Required]
+        [Column("pro_year")]
+        public int ProYear { get; set; }
+
+        [Required]
+        [Column("pro_is_active")]
+        public bool ProIsActive { get; set; }
+
+        [Required]
+        [Column("pro_alcohol_volume")]
+        public float ProAlcoholVolume { get; set; }
+
         // Propriétés de navigation de la classe permettant de naviguer entre les différentes classes (voir cours sur les relations entre les classes)
         public Supplier Supplier { get; set; }
         public Type Type { get; set; }
         public ICollection<SupplierOrderDetails> SupplierOrderDetails { get; set; }
         public ICollection<CustomerOrderDetails> CustomerOrderDetails { get; set; }
-        public AlcoholProduct AlcoholProduct { get; set; }
     }
 }

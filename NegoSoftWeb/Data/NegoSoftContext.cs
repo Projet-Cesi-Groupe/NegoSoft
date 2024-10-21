@@ -15,7 +15,6 @@ namespace NegoSoftWeb.Data
         public DbSet<NegoSoftShared.Models.Entities.Type> Types { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<AlcoholProduct> AlcoholProducts { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<CustomerOrder> CustomerOrders { get; set; }
@@ -33,13 +32,6 @@ namespace NegoSoftWeb.Data
         {
             base.OnModelCreating(modelBuilder);
             // Configuration des relations des tables de la base de données
-
-            // Configuration des relations pour Customer
-            modelBuilder.Entity<Customer>()
-                .HasOne(c => c.DefaultAddress) // Un client a une adresse par défaut
-                .WithOne(a => a.Customer) // Une adresse est associée à un client
-                .HasForeignKey<Customer>(c => c.CusDefaultAddressId) // La clé étrangère de l'adresse par défaut du client
-                .OnDelete(DeleteBehavior.Restrict);  // Pas d'action automatique lors de la suppression
 
             // Configuration des relations pour CustomerOrder
             modelBuilder.Entity<CustomerOrder>()
@@ -80,13 +72,6 @@ namespace NegoSoftWeb.Data
                 .HasForeignKey(p => p.ProTypeId) // La clé étrangère du type du produit
                 .OnDelete(DeleteBehavior.Restrict);  // Quand un type est supprimé, on ne supprime pas automatiquement les produits associés
 
-            // Configuration des relations pour AlcoholProduct
-            modelBuilder.Entity<Product>()
-                .HasOne(p => p.AlcoholProduct) // Un produit peut est associé à un produit alcoolisé
-                .WithOne(ap => ap.Product) // Un produit alcoolisé est associé à un produit
-                .HasForeignKey<AlcoholProduct>(ap => ap.ProTypeId) // La clé étrangère du produit alcoolisé
-                .OnDelete(DeleteBehavior.Restrict);  //Quand un produit est supprimé, on ne supprime pas automatiquement le produit alcoolisé associé
-
             // Configuration des relations pour CustomerOrderDetails (lignes de commande client)
             modelBuilder.Entity<CustomerOrderDetails>()
                 .HasOne(cod => cod.CustomerOrder) // Un détail de commande client est associé à une commande client
@@ -115,10 +100,11 @@ namespace NegoSoftWeb.Data
 
             modelBuilder.Entity<Supplier>()
                 .HasOne(s => s.DefaultAddress) // Un fournisseur a une adresse par défaut
-                .WithOne(a => a.Supplier) // Une adresse est associée à un fournisseur
-                .HasForeignKey<Supplier>(s => s.SupDefaultAddressId) // La clé étrangère de l'adresse par défaut du fournisseur
+                .WithMany(a => a.Suppliers) // Une adresse peut être associée à plusieurs fournisseurs
+                .HasForeignKey(s => s.SupDefaultAddressId) // La clé étrangère de l'adresse par défaut du fournisseur
                 .OnDelete(DeleteBehavior.Restrict); // Quand un fournisseur est supprimé, on ne supprime pas automatiquement son adresse par défaut
 
+            // Configuration des relations pour Customer
             modelBuilder.Entity<Customer>()
                 .HasOne<User>() // Un Customer a un User
                 .WithMany() //  Un User peut être associé à plusieurs Customer
