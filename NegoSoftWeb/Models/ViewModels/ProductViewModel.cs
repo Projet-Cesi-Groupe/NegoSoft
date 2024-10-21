@@ -10,7 +10,5 @@
         public Guid ProTypeId { get; set; }
         public Guid ProSupplierId { get; set; }
         public float ProBoxPrice { get; set; }
-
-        //public IFormFile ProImageFile { get; set; }
     }
 }
