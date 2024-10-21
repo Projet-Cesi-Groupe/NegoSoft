@@ -2,69 +2,80 @@
 @using NegoSoftWeb.Models.ViewModels
 @model ProductSearchViewModel
 
-<div class="container py-5" product-page>
-    <h1 class="text-center">Nos produits</h1>
-
-    <form method="get" asp-controller="Product" asp-action="Search">
-        <!-- On prend la valeur de la recherche pour la renvoyer de nouveau avec les filtres -->
-        <input type="hidden" name="searchString" value="@Context.Request.Query["searchString"]" />
-
-        <select name="typeId" onchange="this.form.submit()" class="form-control">
-            <option value="">Tous les types</option>
-            @foreach (var type in Model.ProductTypes)
-            {
-                var selectedAttribute = Model.SelectedTypeId == type.TypId ? "selected" : "";
-                @Html.Raw($"<option value='{type.TypId}' {selectedAttribute}>{type.TypLibelle}</option>")
-            }
-        </select>
-        <select name="supplierId" onchange="this.form.submit()" class="form-control">
-            <option value="">Tous les fournisseurs</option>
-            @foreach (var supplier in Model.ProductSuppliers)
-            {
-                var selectedAttribute = Model.SelectedSupplierId == supplier.SupId ? "selected" : "";
-                @Html.Raw($"<option value='{supplier.SupId}' {selectedAttribute}>{supplier.SupName}</option>")
-            }
-        </select>
-        <select name="productYear" onchange="this.form.submit()" class="form-control">
-            <option value="">Toutes les Années</option>
-            @foreach (var year in Model.ProductYears)
-            {
-                var selectedAttribute = Model.SelectedYear == year ? "selected" : "";
-                @Html.Raw($"<option value='{year}' {selectedAttribute}>{year}</option>")
-            }
-        </select>
-
-        <!-- Champ de sélection pour le tri -->
-        <select name="sortOrder" onchange="this.form.submit()" class="form-control">
-            <option value="">Aucun Tri</option>
-            @foreach (var sortOrder in Enum.GetValues(typeof(SortOrder)).Cast<SortOrder>())
-            {
-                var selectedAttribute = Model.SelectedSortOrder == sortOrder ? "selected" : "";
-                var sortOrderValue = sortOrder.ToString();
-                @Html.Raw($"<option value='{sortOrderValue}' {selectedAttribute}>{sortOrderValue.Replace("Asc", " (Ascendant)").Replace("Desc", " (Descendant)").Replace("Name", "Nom").Replace("Price", "Prix")}</option>")
-            }
-        </select>
-    </form>
-
+<h1 class="text-center">Nos produits</h1>
+<div class="container py-5 product-page">
     <div class="row">
-        @foreach (var product in Model.Products)
-        {
-          if (!product.ProIsActive)
-			{
-				continue;
-			}
-            <div class="col-md-4 mb-4">
-                <div class="card h-100">
-                    <img src="https://localhost:7101/uploads/@product.ProPictureName" class="card-img-top img-responsive" alt="@product.ProName" />
-                    <div class="card-body">
-                        <h5 class="card-title">@product.ProName</h5>
-                        <p class="card-text">@product.ProDescription</p>
-                        <p class="card-text">Type: @product.Type.TypLibelle - Stock: @product.ProStock</p>
-                        <div class="price">@product.ProPrice €</div>
-                        <a href="@Url.Action("Details", "Product", new { id = @product.ProId })" class="btn btn-primary">Acheter</a>
-                    </div>
+        <div class="sidebar">
+            <form method="get" asp-controller="Product" asp-action="Index" class="filter-form">
+                <input type="hidden" name="searchString" value="@Context.Request.Query["searchString"]" />
+
+                <h5>Filtres</h5>
+                <div class="form-group">
+                    <label for="typeId">Type</label>
+                    <select id="typeId" name="typeId" onchange="this.form.submit()" class="form-control">
+                        <option value="">Tous les types</option>
+                        @foreach (var type in Model.ProductTypes)
+                        {
+                            var selectedAttribute = Model.SelectedTypeId == type.TypId ? "selected" : "";
+                            @Html.Raw($"<option value='{type.TypId}' {selectedAttribute}>{type.TypLibelle}</option>")
+                        }
+                    </select>
                 </div>
+                <div class="form-group">
+                    <label for="supplierId">Fournisseur</label>
+                    <select id="supplierId" name="supplierId" onchange="this.form.submit()" class="form-control">
+                        <option value="">Tous les fournisseurs</option>
+                        @foreach (var supplier in Model.ProductSuppliers)
+                        {
+                            var selectedAttribute = Model.SelectedSupplierId == supplier.SupId ? "selected" : "";
+                            @Html.Raw($"<option value='{supplier.SupId}' {selectedAttribute}>{supplier.SupName}</option>")
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productYear">Année</label>
+                    <select id="productYear" name="productYear" onchange="this.form.submit()" class="form-control">
+                        <option value="">Toutes les Années</option>
+                        @foreach (var year in Model.ProductYears)
+                        {
+                            var selectedAttribute = Model.SelectedYear == year ? "selected" : "";
+                            @Html.Raw($"<option value='{year}' {selectedAttribute}>{year}</option>")
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="sortOrder">Tri</label>
+                    <select id="sortOrder" name="sortOrder" onchange="this.form.submit()" class="form-control">
+                        <option value="">Aucun Tri</option>
+                        @foreach (var sortOrder in Enum.GetValues(typeof(SortOrder)).Cast<SortOrder>())
+                        {
+                            var selectedAttribute = Model.SelectedSortOrder == sortOrder ? "selected" : "";
+                            var sortOrderValue = sortOrder.ToString();
+                            @Html.Raw($"<option value='{sortOrderValue}' {selectedAttribute}>{sortOrderValue.Replace("Asc", " (Ascendant)").Replace("Desc", " (Descendant)").Replace("Name", "Nom").Replace("Price", "Prix")}</option>")
+                        }
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <div class="content">
+            <div class="product-grid">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="product-card">
+                        <div class="card h-100">
+                            <img src="https://localhost:7101/uploads/@product.ProPictureName" class="card-img-top img-responsive" alt="@product.ProName" />
+                            <div class="card-body">
+                                <h5 class="card-title">@product.ProName</h5>
+                                <p class="card-text">Type: @product.Type.TypLibelle - Stock: @product.ProStock</p>
+                                <div class="price">@product.ProPrice €</div>
+                                <a href="@Url.Action("Details", "Product", new { id = @product.ProId })" class="btn btn-primary">Acheter</a>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
-        }
+        </div>
     </div>
 </div>

@@ -1,7 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Payment Cancelled";
+    ViewBag.Title = "Échec du Paiement";
 }
 
-<h2>Payment Cancelled</h2>
-<p>Your payment was cancelled. If this was a mistake, please try again.</p>
-<p><a href="/">Return to Home</a></p>
+<div class="container">
+    <div class="payment-card">
+        <h2 class="payment-title">Échec du Paiement</h2>
+        <p class="payment-message">Désolé, votre paiement n'a pas pu être traité. Veuillez réessayer.</p>
+        <a href="/" class="btn-primary btn-infoperso">Retour à l'accueil</a>
+    </div>
+</div>

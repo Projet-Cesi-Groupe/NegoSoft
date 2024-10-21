@@ -53,12 +53,15 @@ namespace NegoSoftWeb.Services.ProductService
             return await _context.Products
                 .Select(p => p.ProYear)
                 .Distinct()
+                .Where(y => y != 0)
                 .ToListAsync();
         }
 
         public async Task<ProductSearchViewModel> SearchAsync(string searchString, Guid? typeId, Guid? supplierId, int? productYear, SortOrder sortOrder)
         {
             var products = await GetAllProductsAsync();
+
+            products = products.Where(p => p.ProIsActive).ToList();
 
             //controle de la recherche
             if (!String.IsNullOrEmpty(searchString))
