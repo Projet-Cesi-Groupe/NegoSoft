@@ -2,9 +2,9 @@
 for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
 }
 
 a {
@@ -47,6 +47,20 @@ button.accept-policy {
     line-height: 60px;
 }
 
-form.customForm{
-  display: flex  
+.container-fluid {
+    background-color: #641c3d;
 }
+
+.navbar .navbar-brand {
+    color: #f8f4ec; /* Change la couleur du texte de la marque */
+}
+
+    .navbar .navbar-brand:hover {
+        color: #ffffff; /* Change la couleur au survol si souhaité */
+    }
+
+
+form.customForm {
+    display: flex
+}
+

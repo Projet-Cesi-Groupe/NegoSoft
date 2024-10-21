@@ -43,7 +43,7 @@ namespace NegoSoftWeb.Controllers
 
         [HttpGet]
         // GET: Product/
-        public async Task<IActionResult> Index(string searchString, Guid? typeId, Guid? supplierId, int? productYear, SortOrder sortOrder = SortOrder.None)
+        public async Task<IActionResult> Index(string searchString, Guid? typeId, Guid? supplierId, int? productYear, SortOrder sortOrder = SortOrder.Aucun)
         {
         
             var model = await _productService.SearchAsync(searchString, typeId, supplierId, productYear, sortOrder); 

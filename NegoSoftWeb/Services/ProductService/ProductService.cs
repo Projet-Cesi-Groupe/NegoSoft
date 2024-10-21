@@ -53,13 +53,15 @@ namespace NegoSoftWeb.Services.ProductService
             return await _context.Products
                 .Select(p => p.ProYear)
                 .Distinct()
+                .Where(y => y != 0)
                 .ToListAsync();
         }
 
         public async Task<ProductSearchViewModel> SearchAsync(string searchString, Guid? typeId, Guid? supplierId, int? productYear, SortOrder sortOrder)
         {
             var products = await GetAllProductsAsync();
-            Console.WriteLine(products.Count());
+
+            products = products.Where(p => p.ProIsActive).ToList();
 
             //controle de la recherche
             if (!String.IsNullOrEmpty(searchString))
@@ -71,8 +73,6 @@ namespace NegoSoftWeb.Services.ProductService
             if (typeId.HasValue)
             {
                 products = products.Where(p => p.ProTypeId == typeId.Value).ToList();
-                Console.WriteLine(typeId.Value);
-                Console.WriteLine(products.Count());
             }
 
             //on filtre par fournisseur si un fournisseur est selectionné

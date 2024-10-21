@@ -5,7 +5,7 @@
 <h1 class="text-center">Nos produits</h1>
 <div class="container py-5 product-page">
     <div class="row">
-        <div class="col-md-3">
+        <div class="sidebar">
             <form method="get" asp-controller="Product" asp-action="Index" class="filter-form">
                 <input type="hidden" name="searchString" value="@Context.Request.Query["searchString"]" />
 
@@ -59,15 +59,11 @@
             </form>
         </div>
 
-        <div class="col-md-9">
-            <div class="row">
+        <div class="content">
+            <div class="product-grid">
                 @foreach (var product in Model.Products)
                 {
-                    if (!product.ProIsActive)
-                    {
-                        continue;
-                    }
-                    <div class="col-md-4 mb-4">
+                    <div class="product-card">
                         <div class="card h-100">
                             <img src="https://localhost:7101/uploads/@product.ProPictureName" class="card-img-top img-responsive" alt="@product.ProName" />
                             <div class="card-body">

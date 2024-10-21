@@ -13,8 +13,34 @@ body {
     background-color: #f8f4ec; /* Couleur de fond beige */
 }
 
-.product-page {
-    display: flex;
+.container {
+    padding-bottom: 80px; /* Ajustez ceci en fonction de la hauteur de votre footer */
+}
+
+.row {
+    display: block; /* Désactive flexbox */
+}
+
+.sidebar {
+    width: 300px;
+    float: left; /* Utilise float pour positionner la barre latérale */
+}
+
+.content {
+    margin-left: 320px; /* Marge gauche pour compenser la largeur de la barre latérale */
+}
+
+.product-grid {
+    display: inline-block;
+    width: 100%;
+}
+
+.product-card {
+    display: inline-block;
+    width: 31%; /* Assure 3 produits par ligne, ajuste selon les besoins */
+    margin: 0 1%; /* Espace entre les produits */
+    vertical-align: top; /* Assure l'alignement des cartes */
+    margin-bottom: 20px;
 }
 
 .filter-form {
@@ -39,10 +65,7 @@ body {
     background-color: #fff; /* Fond blanc pour les cartes */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
-    margin-bottom: 30px;
     height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
     .card:hover {
@@ -52,14 +75,17 @@ body {
 
 .card-body {
     padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    flex-grow: 1;
 }
 
-h5.card-title {
-    font-size: 1.25rem; /* Ajustement de la taille du titre */
+.card-title {
+    font-size: 1.25rem;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #641c3d; /* Bordeaux pour les prix */
+    margin-bottom: 15px;
 }
 
 .btn-primary {
@@ -77,42 +103,29 @@ h5.card-title {
         background-color: #4a1527; /* Couleur de survol du bouton */
     }
 
-.price {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #641c3d; /* Bordeaux pour les prix */
-    margin-bottom: 15px;
-}
-
 .product-page .card-img-top {
     border-radius: 15px;
     width: 100%;
     height: auto;
     max-height: 300px; /* Hauteur ajustée pour les images de produits */
-    object-fit: cover;
-}
-
-.container {
-    padding-bottom: 80px; /* Ajustez ceci en fonction de la hauteur de votre footer */
-}
-
-.row {
-    display: flex;
-    margin-bottom: 20px;
-    flex-wrap: wrap; /* Permet aux cartes de s'ajuster sur plusieurs lignes */
-    margin-right: -15px; /* Pour compenser le padding de la colonne */
-    margin-left: -15px; /* Pour compenser le padding de la colonne */
-}
-
-.col-md-4 {
-    flex: 0 0 33.3333%; /* Assurez-vous que chaque carte occupe un tiers de l'espace */
-    max-width: 33.3333%; /* Limite la largeur maximale */
-    padding: 15px; /* Espace entre les cartes */
+    object-fit: contain;
 }
 
 .footer {
-    background-color: #f8f4ec;
+    background-color: #641c3d;
     height: 60px;
 }
+
+.footer a {
+    text-decoration: none;
+    color: #f8f4ec;
+}
+
+.footer .container {
+    height: 100%;
+    color: #f8f4ec;
+}
+
+.
 
 
