@@ -41,17 +41,17 @@
                   IsReadOnly="True" HorizontalAlignment="Stretch"/>
 
             <StackPanel Orientation="Horizontal" Grid.Row="3" HorizontalAlignment="Center" Margin="0,20,0,20">
-                <Button Content="Création" FontSize="16" Width="100" Margin="10,0" 
+                <Button Content="Création" FontSize="16" Width="120" Margin="10,0" 
                     Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickCreate"/>
-                <Button Content="Modification" FontSize="16" Width="100" Margin="10,0" 
+                <Button Content="Modification" FontSize="16" Width="120" Margin="10,0"
                     Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickUpdate"/>
-                <Button Content="Suppression" FontSize="16" Width="100" Margin="10,0" 
+                <Button Content="Suppression" FontSize="16" Width="120" Margin="10,0" 
                     Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickDelete"/>
-                <Button Content="Recharger" FontSize="16" Width="100" Margin="10,0" 
+                <Button Content="Recharger" FontSize="16" Width="120" Margin="10,0" 
                     Style="{StaticResource RoundedButtonStyle}" Click="Button_ClickRefresh"/>
-                <Button Content="Détail" FontSize="16" Width="100" Margin="10,0" 
+                <Button Content="Détail" FontSize="16" Width="120" Margin="10,0" 
                     Style="{StaticResource RoundedButtonStyle}" Click="ButtonDetails" Name="DetailsButton"/>
-                <Button Content="Inventaire" FontSize="16" Width="100" Margin="10,0" 
+                <Button Content="Inventaire" FontSize="16" Width="120" Margin="10,0" 
                     Style="{StaticResource RoundedButtonStyle}" Click="Inventory_Click" Name="InventoryButton"/>
             </StackPanel>
         </Grid>
